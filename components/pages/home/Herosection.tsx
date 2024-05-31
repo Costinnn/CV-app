@@ -6,10 +6,12 @@ import ArrowUpRightSvg from "@/public/SVG/ArrowUpRightSvg";
 import portretsImg from "@/public/images/portrets.png";
 
 import "./Herosection.css";
+import BgSpherePrimary from "@/components/design/BgSpherePrimary";
 
 const Herosection = () => {
   return (
     <section className="herosection section-wide">
+      <BgSpherePrimary size="400px" top="0px" right="5vw" color="#5c45fd" />
       <h1>
         Creare CV online <span className="text-gradient-primary">gratis</span>
       </h1>
@@ -24,7 +26,7 @@ const Herosection = () => {
           Vezi modele <ArrowUpRightSvg size="13" color="#f5f5f5" />
         </Link>
         <div>
-          <Image src={portretsImg} alt="cv gratis" width={80} height={50} />
+          <Image src={portretsImg} alt="cv gratis" width={200} height={100} />
           <p>
             500+ <br />
             <span>CV-uri create</span>
