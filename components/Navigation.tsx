@@ -1,24 +1,47 @@
 "use client";
+
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import MenuSvg from "@/public/SVG/MenuSvg";
+import CloseSvg from "@/public/SVG/CloseSvg";
 
 import "./style.css";
-import ArrowUpRightSvg from "@/public/SVG/ArrowUpRightSvg";
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isScrollingUp, setIsScrollingUp] = useState<boolean>(true);
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+  const handleScroll = () => {
+    setScrollPosition((prev) => {
+      if (prev < window.scrollY) {
+        setIsScrollingUp(false);
+      } else {
+        setIsScrollingUp(true);
+      }
+
+      return window.scrollY;
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation section-wide ${isScrollingUp ? "show" : ""}`}>
       <Link href="/">CV-online</Link>
 
       <Link href="/" className="btn-primary">
-        Creeaza CV <ArrowUpRightSvg size="13" color="#f5f5f5" />
+        Completeaza CV
       </Link>
       <button type="button" className="btn-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <MenuSvg color="#f5f5f5" />
+        {isMenuOpen ? <CloseSvg color="#f5f5f5" /> : <MenuSvg color="#f5f5f5" />}
       </button>
 
       <ul className={`menu ${isMenuOpen ? "menu-open" : ""}`}>

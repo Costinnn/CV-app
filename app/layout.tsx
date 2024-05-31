@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Oswald } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 
-const oswald = Oswald({
+const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-no1",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {
@@ -36,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`rootlayout ${oswald.variable} `}>
+      <body className={`rootlayout ${poppins.variable} `}>
         <Navigation />
         {children}
       </body>

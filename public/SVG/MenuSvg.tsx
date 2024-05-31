@@ -1,5 +1,5 @@
-import { SvgType } from "@/types/globalTypes";
 import React from "react";
+import { SvgType } from "@/types/globalTypes";
 
 const MenuSvg = ({ size, color }: SvgType) => {
   return (
@@ -7,8 +7,8 @@ const MenuSvg = ({ size, color }: SvgType) => {
       xmlns="http://www.w3.org/2000/svg"
       id="Outline"
       viewBox="0 0 24 24"
-      width={size ? size : "20"}
-      height={size ? size : "20"}
+      width={size ? size : "25"}
+      height={size ? size : "25"}
       fill={color ? color : "#000000"}
     >
       <path d="M7,0H4A4,4,0,0,0,0,4V7a4,4,0,0,0,4,4H7a4,4,0,0,0,4-4V4A4,4,0,0,0,7,0ZM9,7A2,2,0,0,1,7,9H4A2,2,0,0,1,2,7V4A2,2,0,0,1,4,2H7A2,2,0,0,1,9,4Z" />
