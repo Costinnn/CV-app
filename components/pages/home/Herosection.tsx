@@ -7,11 +7,14 @@ import portretsImg from "@/public/images/portrets.png";
 
 import "./Herosection.css";
 import BgSpherePrimary from "@/components/design/BgSpherePrimary";
+import Carousel from "@/components/subcomponents/Carousel";
 
 const Herosection = () => {
   return (
     <section className="herosection section-wide">
-      <BgSpherePrimary size="400px" top="0px" right="5vw" color="#5c45fd" />
+      <BgSpherePrimary newClsName="sphere1" />
+
+      <BgSpherePrimary newClsName="sphere2" />
       <h1>
         Creare CV online <span className="text-gradient-primary">gratis</span>
       </h1>
@@ -21,7 +24,7 @@ const Herosection = () => {
         obtii jobul dorit.
       </p>
 
-      <div>
+      <div className="call-to-action">
         <Link href={"/"} className="btn-primary2">
           Vezi modele <ArrowUpRightSvg size="13" color="#f5f5f5" />
         </Link>
@@ -33,6 +36,8 @@ const Herosection = () => {
           </p>
         </div>
       </div>
+
+      <Carousel />
     </section>
   );
 };

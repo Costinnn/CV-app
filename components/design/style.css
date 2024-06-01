@@ -1,0 +1,26 @@
+.bg-sphere-primary {
+  /* 
+  
+  ---- POSITION MUST BE SETTED FROM PARENT----
+  .className {
+    bottom: 0;
+    left: -300px;
+  } 
+  
+  */
+
+  position: absolute;
+  z-index: -1;
+  /* top: 0;
+  right: -20vw; */
+  width: 400px;
+  height: 400px;
+  opacity: 0.2;
+  border-radius: 50%;
+  background: radial-gradient(var(--primary), rgba(255, 255, 255, 0) 75%);
+
+  @media screen and (min-width: 850px) {
+    width: 600px;
+    height: 600px;
+  }
+}

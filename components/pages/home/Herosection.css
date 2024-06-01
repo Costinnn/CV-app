@@ -1,22 +1,38 @@
 .herosection {
-  padding: 20px;
   height: fit-content;
   position: relative;
   overflow: hidden;
 
+  .sphere1 {
+    top: 0;
+    right: -20vw;
+
+    @media screen and (min-width: 850px) {
+      right: -100px;
+    }
+  }
+
+  .sphere2 {
+    bottom: 0;
+    left: -300px;
+  }
+
   h1 {
     font-size: 50px;
     margin-top: 100px;
+    padding-left: 20px;
   }
 
   > p {
     margin-top: 40px;
     font-size: 15px;
     max-width: 700px;
+    padding-left: 20px;
   }
 
-  > div {
+  .call-to-action {
     margin-top: 40px;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,6 +41,10 @@
     @media screen and (min-width: 500px) {
       flex-direction: row;
       gap: 50px;
+    }
+
+    a:hover {
+      box-shadow: var(--primary) 0px 4px 12px;
     }
 
     > div {
@@ -50,17 +70,18 @@
 
   /* DESKTOP SETTINGS */
   @media screen and (min-width: 700px) {
-    padding: 5vw;
-
     h1 {
       font-size: 7vw;
+      padding-left: 5vw;
     }
 
     p {
       font-size: 20px;
+      padding-left: 5vw;
     }
 
-    > div {
+    .call-to-action {
+      padding-left: 5vw;
       a {
         font-size: 1.7vw;
         svg {
