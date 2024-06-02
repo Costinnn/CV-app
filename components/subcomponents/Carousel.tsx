@@ -46,7 +46,11 @@ const Carousel = () => {
             <div key={item.id} className="item" onMouseOver={() => setHoveredItem(item.id)} onMouseOut={() => setHoveredItem(null)}>
               <div className={`content ${hoveredItem === item.id ? "gray-bg" : ""}`}>
                 <div className="img-box">
-                  <Image src={hoveredItem === item.id ? item.img2 : item.img1} fill sizes="300px" alt="" />
+                  {hoveredItem === item.id ? (
+                    <Image src={item.img2} fill sizes="(min-width: 1000px) 25vw, 33vw " alt="" />
+                  ) : (
+                    <Image src={item.img1} fill sizes="(min-width: 1000px) 25vw, 33vw " alt="" />
+                  )}
                 </div>
               </div>
             </div>

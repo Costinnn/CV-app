@@ -34,7 +34,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className={`navigation section-wide ${isScrollingUp ? "show" : ""}`}>
+    <nav className={`navigation section-wide ${!isScrollingUp && !isMenuOpen ? "" : "show-nav"}`}>
       <Link href="/">CV-online</Link>
 
       <Link href="/" className="btn-primary">

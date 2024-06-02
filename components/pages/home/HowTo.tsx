@@ -37,7 +37,7 @@ const HowTo = () => {
       </ul>
 
       <div className="img-box">
-        <Image src={cvImg} fill sizes="90vw" alt="cv" />
+        <Image src={cvImg} fill sizes="(min-width: 700px) 30vw, 90vw" alt="model cv" />
       </div>
     </section>
   );
