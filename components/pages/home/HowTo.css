@@ -1,0 +1,108 @@
+.how-to {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 20px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      font-size: 35px;
+      margin-bottom: 30px;
+    }
+
+    li {
+      width: 300px;
+
+      a {
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        font-size: 18px;
+
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--white);
+          color: var(--black);
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    li:first-of-type {
+      a {
+        color: var(--primary);
+
+        span {
+          background-color: var(--primary);
+          color: var(--white);
+        }
+      }
+    }
+
+    li:hover {
+      a {
+        color: var(--primary);
+
+        span {
+          background-color: var(--primary);
+          color: var(--white);
+        }
+      }
+    }
+  }
+
+  .img-box {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+
+    img {
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  /* DESKTOP SETTINGS */
+  @media screen and (min-width: 700px) {
+    grid-template-columns: 3fr 2fr;
+    padding: 5vw;
+
+    ul {
+      justify-content: center;
+
+      h2 {
+        font-size: 5vw;
+      }
+
+      li {
+        width: 70%;
+
+        a {
+          font-size: 2vw;
+          gap: 20px;
+
+          span {
+            flex-shrink: 0;
+            width: 3vw;
+            height: 3vw;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    ul {
+      gap: 20px;
+    }
+  }
+}

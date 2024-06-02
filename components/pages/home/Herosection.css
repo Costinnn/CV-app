@@ -100,4 +100,10 @@
       }
     }
   }
+
+  @media screen and (min-width: 1440px) {
+    > p {
+      max-width: 900px;
+    }
+  }
 }
