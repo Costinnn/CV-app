@@ -37,7 +37,7 @@ const Navigation = () => {
     <nav className={`navigation section-wide ${!isScrollingUp && !isMenuOpen ? "" : "show-nav"}`}>
       <Link href="/">CV-online</Link>
 
-      <Link href="/" className="btn-primary">
+      <Link href="/completare-cv" className="btn-primary">
         Completeaza CV
       </Link>
       <button type="button" className="btn-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -46,10 +46,14 @@ const Navigation = () => {
 
       <ul className={`menu ${isMenuOpen ? "menu-open" : ""}`}>
         <li>
-          <Link href="/">Modele CV</Link>
+          <Link href="/modele-cv" onClick={() => setIsMenuOpen(false)}>
+            Modele CV
+          </Link>
         </li>
         <li>
-          <Link href="/">Blog</Link>
+          <Link href="/blog" onClick={() => setIsMenuOpen(false)}>
+            Blog
+          </Link>
         </li>
       </ul>
     </nav>
