@@ -43,10 +43,6 @@
       gap: 50px;
     }
 
-    a:hover {
-      box-shadow: var(--primary) 0px 4px 12px;
-    }
-
     > div {
       display: flex;
       align-items: center;

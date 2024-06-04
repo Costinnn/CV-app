@@ -73,10 +73,6 @@
           span {
             font-size: 13px;
           }
-
-          span:hover {
-            box-shadow: var(--primary) 0px 4px 12px;
-          }
         }
       }
     }

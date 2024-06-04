@@ -69,6 +69,11 @@ button {
   border-radius: 5px;
 }
 
+.btn-primary2:hover,
+.btn-primary:hover {
+  box-shadow: var(--primary) 0px 4px 12px;
+}
+
 /* GRADIENTS */
 
 .text-gradient-primary {
@@ -85,6 +90,22 @@ button {
 .blog {
   margin: 100px 0;
   h1 {
+    text-align: center;
+    font-size: 50px;
+  }
+  @media screen and (min-width: 700px) {
+    h1 {
+      font-size: 5vw;
+    }
+  }
+}
+
+.cv-fill {
+  h1 {
+    padding-top: 100px;
+    margin-bottom: -10px;
+    color: var(--black);
+    background-color: var(--primary);
     text-align: center;
     font-size: 50px;
   }

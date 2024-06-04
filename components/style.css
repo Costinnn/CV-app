@@ -14,10 +14,6 @@
     font-size: 14px;
   }
 
-  .btn-primary:hover {
-    box-shadow: var(--primary) 0px 4px 12px;
-  }
-
   .btn-menu {
     cursor: pointer;
 
