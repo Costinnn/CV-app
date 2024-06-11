@@ -1,10 +1,7 @@
 .other-categories {
   margin-top: 50px;
 
-  h2 {
-  }
-
-  .content {
+  .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;

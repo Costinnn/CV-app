@@ -12,7 +12,7 @@ const page = () => {
       <h1>Completeaza CV online</h1>
       <BottomWave2 />
 
-      <div className="content">
+      <div className="page-content">
         <FillForm />
         <PreviewCv />
       </div>

@@ -19,7 +19,7 @@ const OtherCategories = ({ handleOtherCategories, otherCategories }: formPropTyp
     <div className="other-categories">
       <h2>Adauga alte Categorii</h2>
 
-      <div className="content">
+      <div className="buttons">
         <button
           type="button"
           className={`btn-primary2 ${otherCategories.projects ? "selected" : ""}`}
