@@ -38,7 +38,9 @@
     }
 
     fieldset {
-      border: none;
+      display: block;
+      width: 100%;
+      border: 1px solid red;
       margin-top: 50px;
       width: 100%;
 
@@ -51,7 +53,7 @@
       label {
         textarea {
           border: 1px solid red;
-          width: 200px;
+          width: 100%;
         }
       }
 
