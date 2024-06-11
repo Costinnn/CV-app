@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -43,44 +43,42 @@ const CvList = () => {
   }, [cvType]);
 
   return (
-    <Suspense>
-      <section className="cv-list section-wide">
-        <ul className="filters">
-          <li>
-            <Link href={`${pathname}`} className={`${cvType === null ? "selected" : ""}`}>
-              Toate
+    <section className="cv-list section-wide">
+      <ul className="filters">
+        <li>
+          <Link href={`${pathname}`} className={`${cvType === null ? "selected" : ""}`}>
+            Toate
+          </Link>
+        </li>
+
+        {CV_TYPES.map((item) => (
+          <li key={item.type}>
+            <Link href={`${pathname}?tip-cv-ales=${item.query}`} className={`${cvType === item.query ? "selected" : ""}`}>
+              {item.type}
             </Link>
           </li>
+        ))}
+      </ul>
 
-          {CV_TYPES.map((item) => (
-            <li key={item.type}>
-              <Link href={`${pathname}?tip-cv-ales=${item.query}`} className={`${cvType === item.query ? "selected" : ""}`}>
-                {item.type}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <ul className="templates">
+        {filteredCVTemplates.map((item) => (
+          <li key={item.templateName}>
+            <Link href={`/completare-cv?model-ales=${item.templateName}`}>
+              <div className="img-box">
+                <Image src={item.img} fill sizes="85vw" alt={item.templateName} />
+              </div>
 
-        <ul className="templates">
-          {filteredCVTemplates.map((item) => (
-            <li key={item.templateName}>
-              <Link href={`/completare-cv?model-ales=${item.templateName}`}>
-                <div className="img-box">
-                  <Image src={item.img} fill sizes="85vw" alt={item.templateName} />
-                </div>
-
-                <div className="text">
-                  <h2>{item.templateName}</h2>
-                  <span className="btn-primary2">
-                    Completeaza <ArrowUpRightSvg size="10" color="#f5f5f5" />
-                  </span>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Suspense>
+              <div className="text">
+                <h2>{item.templateName}</h2>
+                <span className="btn-primary2">
+                  Completeaza <ArrowUpRightSvg size="10" color="#f5f5f5" />
+                </span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 
