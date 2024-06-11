@@ -174,10 +174,10 @@ const FillForm = () => {
               <input type="text" placeholder="..." />
             </label>
 
-            <label>
+            {/* <label>
               Descriere
               <textarea cols={30} rows={5}></textarea>
-            </label>
+            </label> */}
 
             <label>
               Perioada

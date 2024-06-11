@@ -1,10 +1,9 @@
 .fill-form {
-  border: 2px dotted blue;
-
   form {
     padding: 0 20px;
     margin-bottom: 50px;
 
+    fieldset > label,
     label {
       display: flex;
       flex-direction: column;

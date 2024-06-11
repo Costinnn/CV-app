@@ -7,10 +7,6 @@
     text-align: center;
   }
 
-  .page-content{
-    border: 2px solid red;
-  }
-
   @media screen and (min-width: 370px) {
     > h1 {
       font-size: 50px;
