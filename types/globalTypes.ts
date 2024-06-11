@@ -10,3 +10,5 @@ export type CvTemplateType = {
   templateName: string;
   type: string;
 };
+
+export type OtherCategoriesFormType = { projects: boolean; volunteering: boolean; links: boolean; hobbies: boolean; personalized: boolean };

@@ -31,6 +31,10 @@
         margin-top: 10px;
       }
     }
+    
+    label:first-of-type {
+      margin-top: 10px;
+    }
 
     fieldset {
       border: none;

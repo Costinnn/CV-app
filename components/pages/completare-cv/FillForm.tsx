@@ -1,10 +1,30 @@
-import React from "react";
+"use client";
 
-import "./FillForm.css";
+import React, { useEffect, useState } from "react";
+
 import AddSvg from "@/public/SVG/AddSvg";
 import OtherCategories from "./OtherCategories";
 
+import "./FillForm.css";
+import { OtherCategoriesFormType } from "@/types/globalTypes";
+
 const FillForm = () => {
+  const [otherCategories, setOtherCategories] = useState<OtherCategoriesFormType>({
+    projects: false,
+    volunteering: false,
+    links: false,
+    hobbies: false,
+    personalized: false,
+  });
+
+  const handleOtherCategories = (category: "projects" | "volunteering" | "links" | "hobbies" | "personalized") => {
+    setOtherCategories((prev) => ({ ...prev, [category]: !prev[category] }));
+  };
+
+  useEffect(() => {
+    console.log(otherCategories);
+  }, [otherCategories]);
+
   return (
     <section className="fill-form section-wide">
       <form>
@@ -117,7 +137,160 @@ const FillForm = () => {
           </button>
         </label>
 
-        <OtherCategories />
+        {/* PROJECTS */}
+        {otherCategories.projects && (
+          <fieldset>
+            <legend>Proiecte</legend>
+
+            <label>
+              Titlu
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Link (URL)
+              <input type="text" placeholder="..." />
+            </label>
+
+            <button type="button" className="btn-add">
+              <AddSvg />
+              Adauga proiect
+            </button>
+          </fieldset>
+        )}
+
+        {/* VOLUNTEERING */}
+        {otherCategories.volunteering && (
+          <fieldset>
+            <legend>Voluntariat</legend>
+
+            <label>
+              Rol
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Organizatie
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Descriere
+              <textarea cols={30} rows={5}></textarea>
+            </label>
+
+            <label>
+              Perioada
+              <div>
+                <input type="date" />
+                <input type="date" />
+              </div>
+            </label>
+
+            <label className="checkbox">
+              <input type="checkbox" name="" id="" />
+              <span className="checkmark"></span>
+              Pana in prezent
+            </label>
+
+            <button type="button" className="btn-add">
+              <AddSvg />
+              Adauga voluntariat
+            </button>
+          </fieldset>
+        )}
+
+        {/* LINKS */}
+        {otherCategories.links && (
+          <fieldset>
+            <legend>Link-uri</legend>
+
+            <label>
+              Titlu
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Link (URL)
+              <input type="text" placeholder="..." />
+            </label>
+
+            <button type="button" className="btn-add">
+              <AddSvg />
+              Adauga link
+            </button>
+          </fieldset>
+        )}
+
+        {/* HOBBIES */}
+        {otherCategories.hobbies && (
+          <fieldset>
+            <legend>Hobbi-uri</legend>
+
+            <label>
+              Titlu
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Descriere
+              <textarea cols={30} rows={5}></textarea>
+            </label>
+
+            <button type="button" className="btn-add">
+              <AddSvg />
+              Adauga hobbi
+            </button>
+          </fieldset>
+        )}
+
+        {/* PERSONALIZED */}
+        {otherCategories.personalized && (
+          <fieldset>
+            <legend>Sectiune personalizata</legend>
+
+            <label>
+              Titlu sectiune
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Titlu
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Link (URL)
+              <input type="text" placeholder="..." />
+            </label>
+
+            <label>
+              Descriere
+              <textarea cols={30} rows={5}></textarea>
+            </label>
+
+            <label>
+              Perioada
+              <div>
+                <input type="date" />
+                <input type="date" />
+              </div>
+            </label>
+
+            <label className="checkbox">
+              <input type="checkbox" name="" id="" />
+              <span className="checkmark"></span>
+              Pana in prezent
+            </label>
+
+            <button type="button" className="btn-add">
+              <AddSvg />
+              Adauga sectiune
+            </button>
+          </fieldset>
+        )}
+
+        <OtherCategories otherCategories={otherCategories} handleOtherCategories={handleOtherCategories} />
       </form>
     </section>
   );

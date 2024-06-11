@@ -7,42 +7,64 @@ import ProjectsSvg from "@/public/SVG/ProjectsSvg";
 import VolunteeringSvg from "@/public/SVG/VolunteeringSvg";
 
 import "./OtherCategories.css";
+import { OtherCategoriesFormType } from "@/types/globalTypes";
 
-const OtherCategories = () => {
+type formPropType = {
+  handleOtherCategories: (category: "projects" | "volunteering" | "links" | "hobbies" | "personalized") => void;
+  otherCategories: OtherCategoriesFormType;
+};
+
+const OtherCategories = ({ handleOtherCategories, otherCategories }: formPropType) => {
   return (
     <div className="other-categories">
       <h2>Adauga alte Categorii</h2>
 
       <div className="content">
-        <button type="button" className="btn-primary2">
+        <button
+          type="button"
+          className={`btn-primary2 ${otherCategories.projects ? "selected" : ""}`}
+          onClick={() => handleOtherCategories("projects")}
+        >
           <span id="svg">
             <ProjectsSvg color="#f5f5f5" />
           </span>
           <span id="text">Proiecte</span>
         </button>
 
-        <button type="button" className="btn-primary2">
+        <button
+          type="button"
+          className={`btn-primary2 ${otherCategories.volunteering ? "selected" : ""}`}
+          onClick={() => handleOtherCategories("volunteering")}
+        >
           <span id="svg">
             <VolunteeringSvg color="#f5f5f5" />
           </span>
           <span id="text">Voluntariat</span>
         </button>
 
-        <button type="button" className="btn-primary2">
+        <button type="button" className={`btn-primary2 ${otherCategories.links ? "selected" : ""}`} onClick={() => handleOtherCategories("links")}>
           <span id="svg">
             <LinkSvg color="#f5f5f5" />
           </span>
           <span id="text"> Link-uri</span>
         </button>
 
-        <button type="button" className="btn-primary2">
+        <button
+          type="button"
+          className={`btn-primary2 ${otherCategories.hobbies ? "selected" : ""}`}
+          onClick={() => handleOtherCategories("hobbies")}
+        >
           <span id="svg">
             <HobbiesSvg color="#f5f5f5" />
           </span>
           <span id="text">Hobbi-uri</span>
         </button>
 
-        <button type="button" className="btn-primary2">
+        <button
+          type="button"
+          className={`btn-primary2 ${otherCategories.personalized ? "selected" : ""}`}
+          onClick={() => handleOtherCategories("personalized")}
+        >
           <span id="svg">
             <CustomSvg color="#f5f5f5" />
           </span>

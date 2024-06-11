@@ -41,5 +41,16 @@
         }
       }
     }
+
+    .selected {
+      border: 2px solid var(--gray);
+      #svg {
+        background-color: var(--gray);
+      }
+    }
+
+    .selected:hover {
+      box-shadow: var(--gray) 0px 4px 12px;
+    }
   }
 }

@@ -1,0 +1,68 @@
+.preview {
+  position: relative;
+  display: none;
+  border: 2px solid red;
+  background-color: black;
+  color: white !important;
+
+  .close {
+    color: white;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px;
+  }
+
+  /* DESKTOP SETTINGS */
+  @media screen and (min-width: 800px) {
+    display: block;
+    position: sticky;
+    height: 80vh;
+    top: 70px;
+
+    h1 {
+      border: 1px solid blue;
+      color: white;
+    }
+
+    .close {
+      display: none;
+    }
+  }
+}
+
+/* PHONE SETTINGS */
+.isOpen {
+  display: block;
+  position: fixed;
+  top: 65px;
+  left: 0;
+  height: calc(100vh - 65px);
+}
+
+.preview-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--primary);
+  padding: 10px;
+  border-radius: 10px;
+
+  span {
+    display: none;
+  }
+
+  @media screen and (min-width: 800px) {
+    display: none;
+  }
+}
+
+.preview-btn:hover {
+  span {
+    display: inline;
+  }
+}
