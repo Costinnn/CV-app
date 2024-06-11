@@ -5,7 +5,12 @@
     color: var(--black);
     background-color: var(--primary);
     text-align: center;
-    font-size: 50px;
+  }
+
+  @media screen and (min-width: 370px) {
+    > h1 {
+      font-size: 50px;
+    }
   }
 
   @media screen and (min-width: 700px) {

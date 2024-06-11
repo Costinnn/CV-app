@@ -31,7 +31,7 @@
         margin-top: 10px;
       }
     }
-    
+
     label:first-of-type {
       margin-top: 10px;
     }
@@ -39,6 +39,7 @@
     fieldset {
       border: none;
       margin-top: 50px;
+      max-width: 100%;
 
       legend {
         font-size: 20px;
