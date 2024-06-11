@@ -8,7 +8,7 @@ import PreviewCv from "@/components/pages/completare-cv/PreviewCv";
 
 const page = () => {
   return (
-    <main className="cv-fill">
+    <main className="cv-fill section-wide">
       <h1>Completeaza CV online</h1>
       <BottomWave2 />
 
