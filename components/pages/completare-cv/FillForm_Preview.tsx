@@ -32,16 +32,55 @@ const FillForm_Preview = () => {
   });
 
   // FINAL DATA VALUES
-  const [generalInfo, setGeneralInfo] = useState<GeneralInfoType>({ name: "", description: "" });
-  const [contact, setContact] = useState<ContactType>({ phone: "", email: "", address: "" });
-  const [education, setEducation] = useState<EducationStateType[]>([]);
-  const [experience, setExperience] = useState<ExperienceStateType[]>([]);
-  const [competences, setCompetences] = useState<string[]>([]);
-  const [projects, setProjects] = useState<ProjectsStateType[]>([]);
+  const [generalInfo, setGeneralInfo] = useState<GeneralInfoType>({
+    name: "Noel Taylor",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+  });
+  const [contact, setContact] = useState<ContactType>({ phone: "0750 000 000", email: "noel@gmail.com", address: "769 Lincoln Park, ML" });
+  const [education, setEducation] = useState<EducationStateType[]>([
+    { school: "Stanford University", specialization: "Master degree graduate", start: "2011.01.01", end: "2012.01.05", untilNow: false },
+    { school: "University of Chicago", specialization: "Bachelor degree graduate", start: "2012.05.01", end: "", untilNow: true },
+  ]);
+  const [experience, setExperience] = useState<ExperienceStateType[]>([
+    { position: "Senior web designer", company: "Creative agency", start: "2020.02.01", end: "", untilNow: true },
+    { position: "Graphic designer", company: "Market agency", start: "2015.02.03", end: "2020.01.03", untilNow: false },
+    { position: "Marketing manager", company: "Manufacturing agency", start: "2013.01.01", end: "2015.02.03", untilNow: false },
+  ]);
+  const [competences, setCompetences] = useState<string[]>([
+    "Adope photoshop",
+    "Microsoft Word",
+    "HTML/CSS",
+    "Adobe illustrator",
+    "Microsoft powerpoint",
+  ]);
+  const [projects, setProjects] = useState<ProjectsStateType[]>([
+    { title: "Residential Rebranding", link: "" },
+    { title: "Food Logo", link: "" },
+    { title: "Webside design", link: "" },
+  ]);
   const [volunteering, setVolunteering] = useState<VolunteeringStateType[]>([]);
-  const [links, setLinks] = useState<LinksStateType[]>([]);
-  const [hobbies, setHobbies] = useState<HobbiesStateType[]>([]);
-  const [personalized, setPersonalized] = useState<PersonalizedStateType[]>([]);
+  const [links, setLinks] = useState<LinksStateType[]>([
+    { title: "Github", link: "www.github.com" },
+    { title: "Behance", link: "www.behance.com" },
+  ]);
+  const [hobbies, setHobbies] = useState<HobbiesStateType[]>([
+    { title: "Reading books", description: "" },
+    { title: "Traveling", description: "" },
+    { title: "Playing chess", description: "" },
+    { title: "Running", description: "" },
+  ]);
+  const [personalized, setPersonalized] = useState<PersonalizedStateType[]>([
+    {
+      sectionTitle: "References",
+      title: "Darwin B. Magna",
+      link: "",
+      description: "2813 Shobe Lane Mancos",
+      start: "",
+      end: "",
+      untilNow: false,
+    },
+  ]);
 
   // TEMPORARY STATE
   const [educationState, setEducationState] = useState<EducationStateType>({ school: "", specialization: "", start: "", end: "", untilNow: false });

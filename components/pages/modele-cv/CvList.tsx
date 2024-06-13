@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-import templateImg from "@/public/images/templates/template1.jpg";
+import { CV_TEMPLATES } from "@/public/data/cvTemplates";
 import ArrowUpRightSvg from "@/public/SVG/ArrowUpRightSvg";
 
 import { CvTemplateType } from "@/types/globalTypes";
@@ -17,13 +17,6 @@ const CV_TYPES = [
   { type: "Modern", query: "modern" },
   { type: "Creativ", query: "creativ" },
   { type: "Profesional", query: "profesional" },
-];
-
-const CV_TEMPLATES: CvTemplateType[] = [
-  { img: templateImg, templateName: "taylor", type: "simple" },
-  { img: templateImg, templateName: "taylor2", type: "simple" },
-  { img: templateImg, templateName: "taylor3", type: "modern" },
-  { img: templateImg, templateName: "taylor4", type: "profesional" },
 ];
 
 const CvList = () => {
