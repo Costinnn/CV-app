@@ -1,10 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-import FillForm from "@/components/pages/completare-cv/FillForm";
 import BottomWave2 from "@/public/SVG/BottomWave2";
+import FillForm_Preview from "@/components/pages/completare-cv/FillForm_Preview";
 
 import "./style.css";
-import PreviewCv from "@/components/pages/completare-cv/PreviewCv";
 
 const page = () => {
   return (
@@ -12,10 +11,9 @@ const page = () => {
       <h1>Completeaza CV online</h1>
       <BottomWave2 />
 
-      <div className="page-content">
-        <FillForm />
-        <PreviewCv />
-      </div>
+      <Suspense>
+        <FillForm_Preview />
+      </Suspense>
     </main>
   );
 };

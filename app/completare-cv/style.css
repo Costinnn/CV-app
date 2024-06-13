@@ -18,11 +18,4 @@
       font-size: 5vw;
     }
   }
-
-  .page-content {
-    @media screen and (min-width: 800px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-  }
 }

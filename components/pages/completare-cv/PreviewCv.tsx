@@ -3,15 +3,18 @@
 import React, { useState } from "react";
 
 import LeftArrowSvg from "@/public/SVG/LeftArrowSvg";
-
-import "./PreviewCv.css";
 import CloseSvg from "@/public/SVG/CloseSvg";
 
-const PreviewCv = () => {
+import { PreviewCvPropType } from "@/types/globalTypes";
+
+import "./PreviewCv.css";
+
+const PreviewCv = ({ inputData }: PreviewCvPropType) => {
   const [isPreviewOpen, setiIsPreviewOpen] = useState(false);
 
   return (
     <>
+      {/* ACTIVE ON MOBILE */}
       <button
         type="button"
         className="preview-btn"
@@ -23,6 +26,7 @@ const PreviewCv = () => {
         <span>Previzualizeaza & Descarca</span>
       </button>
 
+      {/* PREVIEW DISPLAY */}
       <section className={`preview ${isPreviewOpen ? "isOpen" : ""} section-wide`}>
         <h1>Hello</h1>
         <button type="button" className="close" onClick={() => setiIsPreviewOpen(false)}>

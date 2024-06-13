@@ -44,3 +44,18 @@ export type PersonalizedStateType = {
   end: string;
   untilNow: boolean;
 };
+
+export type PreviewCvPropType = {
+  inputData: {
+    generalInfo: GeneralInfoType;
+    contact: ContactType;
+    education: EducationStateType[];
+    experience: ExperienceStateType[];
+    competences: string[];
+    projects: ProjectsStateType[];
+    volunteering: VolunteeringStateType[];
+    links: LinksStateType[];
+    hobbies: HobbiesStateType[];
+    personalized: PersonalizedStateType[];
+  };
+};
