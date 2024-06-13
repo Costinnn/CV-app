@@ -15,7 +15,7 @@ const Navigation = () => {
 
   const handleScroll = () => {
     setScrollPosition((prev) => {
-      if (prev < window.scrollY) {
+      if (prev < window.scrollY && window.scrollY > 100) {
         setIsScrollingUp(false);
       } else {
         setIsScrollingUp(true);
