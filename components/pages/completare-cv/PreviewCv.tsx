@@ -11,6 +11,8 @@ import CloseSvg from "@/public/SVG/CloseSvg";
 import { PreviewCvPropType } from "@/types/globalTypes";
 import { CV_TEMPLATES } from "@/public/data/cvTemplates";
 
+import Simple from "@/components/cv-templates/simple/Simple";
+
 import "./PreviewCv.css";
 
 const PreviewCv = ({ inputData }: PreviewCvPropType) => {
@@ -40,24 +42,30 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
       </button>
 
       {/* PREVIEW DISPLAY */}
-      <section className={`preview section-wide ${isPreviewOpen ? "isOpen" : ""} ${!selectedTemplate && "overflow-scroll"}`}>
+      <section className={`preview section-wide ${isPreviewOpen ? "isOpen" : ""} `}>
         {selectedTemplate ? (
-          <div className="cv-template-preview"></div>
+          <div className="cv-template-preview">
+            <Simple inputData={inputData} />
+          </div>
         ) : (
-          <ul className="cv-templates-list">
-            {CV_TEMPLATES.map((item) => (
-              <li key={item.templateName}>
-                <div className="img-box">
-                  <Image src={item.img} fill sizes="85vw" alt={item.templateName} />
-                </div>
+          <div className={`ctl-box ${!selectedTemplate && "overflow-scroll"}`}>
 
-                <Link href={`/completare-cv?model-ales=${item.templateName}`} className="text">
-                  <h2>{item.templateName}</h2>
-                  <span className="btn-primary2">Alege</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+            <ul className="cv-templates-list">
+              {CV_TEMPLATES.map((item) => (
+                <li key={item.templateName}>
+                  <div className="img-box">
+                    <Image src={item.img} fill sizes="85vw" alt={item.templateName} />
+                  </div>
+
+                  <Link href={`/completare-cv?model-ales=${item.templateName}`} className="text">
+                    <h2>{item.templateName}</h2>
+                    <span className="btn-primary2">Alege</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+          </div>
         )}
 
         {/* ACTIVE ON MOBILE */}

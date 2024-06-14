@@ -1,80 +1,7 @@
 .preview {
   position: relative;
   display: none;
-
-  .cv-template-preview {
-    background-color: white;
-    position: sticky;
-    top: 70px;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    aspect-ratio: 1/1.414 !important;
-    max-height: calc(100dvh - 80px);
-  }
-
-  .cv-templates-list {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    height: fit-content;
-
-    li {
-      width: 100%;
-      max-width: 520px;
-      margin-top: 20px;
-
-      .img-box {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 1/1.414;
-
-        img {
-          object-fit: contain;
-          object-position: center;
-        }
-      }
-
-      .text {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        padding: 10px;
-        background-color: var(--black);
-
-        h2 {
-          text-transform: capitalize;
-          font-weight: 500;
-          font-size: 17px;
-        }
-
-        span {
-          font-size: 13px;
-        }
-      }
-    }
-
-    /* blur */
-    &::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      left: 0;
-      top: 0;
-      display: block;
-      height: 100%;
-      width: 100%;
-      background: rgba(255, 255, 255, 0);
-      border-radius: 5px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(3.7px);
-      -webkit-backdrop-filter: blur(3.7px);
-    }
-  }
+  color: var(--black);
 
   .close {
     color: white;
@@ -84,7 +11,118 @@
     padding: 10px;
   }
 
-  /* blur */
+  /* choosen - template preview */
+  .cv-template-preview {
+    overflow-y: scroll;
+    background-color: white;
+    position: sticky;
+    top: 70px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    aspect-ratio: 1/1.414 !important;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* unchoosen - templates list */
+  .ctl-box {
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 1/1.5;
+    margin: 0 auto;
+    overflow: hidden;
+
+    .cv-templates-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      height: fit-content;
+      width: 100%;
+
+      li {
+        width: 100%;
+        margin-top: 20px;
+
+        .img-box {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 1/1.414;
+
+          img {
+            object-fit: contain;
+            object-position: center;
+          }
+        }
+
+        .text {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          padding: 10px;
+          background-color: var(--black);
+
+          h2 {
+            text-transform: capitalize;
+            font-weight: 500;
+            font-size: 17px;
+          }
+
+          span {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+
+  .overflow-scroll {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  /* DESKTOP SETTINGS - for templates list */
+  @media screen and (min-width: 800px) {
+    display: block;
+    padding-right: 20px;
+
+    .ctl-box {
+      max-width: none;
+      aspect-ratio: auto;
+    }
+
+    .close {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .ctl-box {
+      .cv-templates-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 20px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1500px) {
+    .ctl-box {
+      .cv-templates-list {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+
+  /* blur background*/
   &::before {
     content: "";
     position: absolute;
@@ -99,41 +137,6 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.7px);
     -webkit-backdrop-filter: blur(3.7px);
-  }
-
-  /* DESKTOP SETTINGS */
-  @media screen and (min-width: 800px) {
-    display: block;
-    padding-right: 20px;
-
-    .close {
-      display: none;
-    }
-  }
-
-  @media screen and (min-width: 1200px) {
-    .cv-templates-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      column-gap: 20px;
-    }
-  }
-
-  @media screen and (min-width: 1500px) {
-    .cv-templates-list {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-}
-
-/* .preview - SCROLL WHEN NO TEMPLATE SELECTED */
-.overflow-scroll {
-  overflow-y: scroll;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-  &::-webkit-scrollbar {
-    display: none;
   }
 }
 

@@ -1,0 +1,133 @@
+.model-simple {
+  padding: 30px;
+
+  > div {
+    h3 {
+      background-color: rgba(128, 128, 128, 0.356);
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+
+      .separator {
+        font-weight: 600;
+        color: var(--gray) !important;
+        text-decoration: none;
+      }
+
+      .link {
+        color: rgb(77, 77, 253);
+        text-decoration: underline;
+      }
+    }
+
+    ul {
+      margin-top: 5px;
+    }
+  }
+
+  /* mobile - RELATIVE FONT SIZE (1vw ~ 5px) */
+  @media screen and (max-width: 519px) {
+    h2 {
+      font-size: 4.5vw;
+    }
+
+    > div {
+      h3 {
+        font-size: 3vw;
+        margin-top: 2vw;
+      }
+
+      p {
+        .separator {
+          margin: 0 0.5vw;
+        }
+      }
+
+      p,
+      ul {
+        font-size: 2.5vw;
+        margin-top: 1vw;
+      }
+    }
+  }
+
+  /* mobile - FIXED FONT SIZE, template max-width: 520px */
+  @media screen and (min-width: 520px) {
+    h2 {
+      font-size: 23.5px;
+    }
+
+    > div {
+      h3 {
+        font-size: 15.5px;
+        margin-top: 10px;
+      }
+
+      p {
+        .separator {
+          margin: 0 5px;
+        }
+      }
+
+      p,
+      ul {
+        font-size: 13px;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  /* desktop - RELATIVE FONT SIZE (sizes are half of mobile - RELATIVE ones)*/
+  @media screen and (min-width: 800px) {
+    h2 {
+      font-size: 2.25vw;
+    }
+
+    > div {
+      h3 {
+        font-size: 1.5vw;
+        margin-top: 1vw;
+      }
+
+      p {
+        .separator {
+          margin: 0 0.25vw;
+        }
+      }
+
+      p,
+      ul {
+        font-size: 1.25vw;
+        margin-top: 0.5vw;
+      }
+    }
+  }
+
+  /* desktop - FIXED FONT SIZE, template max-width: 520px ( sizes are equal as mobile - FIXED ones)*/
+  @media screen and (min-width: 1080px) {
+    h2 {
+      font-size: 23.5px;
+    }
+
+    > div {
+      h3 {
+        font-size: 15.5px;
+        margin-top: 10px;
+      }
+
+      p {
+        .separator {
+          margin: 0 5px;
+        }
+      }
+
+      p,
+      ul {
+        font-size: 13px;
+        margin-top: 5px;
+      }
+    }
+  }
+}
