@@ -30,65 +30,13 @@
   /* mobile - RELATIVE FONT SIZE (1vw ~ 5px) */
   @media screen and (max-width: 519px) {
     h2 {
-      font-size: 4.5vw;
+      font-size: 4vw;
     }
 
     > div {
       h3 {
-        font-size: 3vw;
-        margin-top: 2vw;
-      }
-
-      p {
-        .separator {
-          margin: 0 0.5vw;
-        }
-      }
-
-      p,
-      ul {
         font-size: 2.5vw;
-        margin-top: 1vw;
-      }
-    }
-  }
-
-  /* mobile - FIXED FONT SIZE, template max-width: 520px */
-  @media screen and (min-width: 520px) {
-    h2 {
-      font-size: 23.5px;
-    }
-
-    > div {
-      h3 {
-        font-size: 15.5px;
-        margin-top: 10px;
-      }
-
-      p {
-        .separator {
-          margin: 0 5px;
-        }
-      }
-
-      p,
-      ul {
-        font-size: 13px;
-        margin-top: 5px;
-      }
-    }
-  }
-
-  /* desktop - RELATIVE FONT SIZE (sizes are half of mobile - RELATIVE ones)*/
-  @media screen and (min-width: 800px) {
-    h2 {
-      font-size: 2.25vw;
-    }
-
-    > div {
-      h3 {
-        font-size: 1.5vw;
-        margin-top: 1vw;
+        margin-top: 2vw;
       }
 
       p {
@@ -99,7 +47,59 @@
 
       p,
       ul {
+        font-size: 2vw;
+        margin-top: 1vw;
+      }
+    }
+  }
+
+  /* mobile - FIXED FONT SIZE, template max-width: 520px */
+  @media screen and (min-width: 520px) {
+    h2 {
+      font-size: 20.5px;
+    }
+
+    > div {
+      h3 {
+        font-size: 12.5px;
+        margin-top: 10px;
+      }
+
+      p {
+        .separator {
+          margin: 0 2px;
+        }
+      }
+
+      p,
+      ul {
+        font-size: 10px;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  /* desktop - RELATIVE FONT SIZE (sizes are half of mobile - RELATIVE ones)*/
+  @media screen and (min-width: 800px) {
+    h2 {
+      font-size: 2vw;
+    }
+
+    > div {
+      h3 {
         font-size: 1.25vw;
+        margin-top: 1vw;
+      }
+
+      p {
+        .separator {
+          margin: 0 0.13vw;
+        }
+      }
+
+      p,
+      ul {
+        font-size: 1vw;
         margin-top: 0.5vw;
       }
     }
@@ -108,24 +108,24 @@
   /* desktop - FIXED FONT SIZE, template max-width: 520px ( sizes are equal as mobile - FIXED ones)*/
   @media screen and (min-width: 1080px) {
     h2 {
-      font-size: 23.5px;
+      font-size: 20.5px;
     }
 
     > div {
       h3 {
-        font-size: 15.5px;
+        font-size: 12.5px;
         margin-top: 10px;
       }
 
       p {
         .separator {
-          margin: 0 5px;
+          margin: 0 2px;
         }
       }
 
       p,
       ul {
-        font-size: 13px;
+        font-size: 10px;
         margin-top: 5px;
       }
     }
