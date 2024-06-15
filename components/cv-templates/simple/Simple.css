@@ -3,7 +3,7 @@
 
   > div {
     h3 {
-      background-color: rgba(128, 128, 128, 0.356);
+      background-color: #d9d9d9;
       text-align: center;
     }
 
@@ -19,6 +19,7 @@
       .link {
         color: rgb(77, 77, 253);
         text-decoration: underline;
+        font-weight: 600;
       }
     }
 

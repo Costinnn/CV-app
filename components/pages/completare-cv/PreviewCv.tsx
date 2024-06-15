@@ -5,8 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
+import SimplePdf from "@/components/cv-templates/simple/SimplePdf";
+
 import LeftArrowSvg from "@/public/SVG/LeftArrowSvg";
 import CloseSvg from "@/public/SVG/CloseSvg";
+import ViewPdfSvg from "@/public/SVG/ViewPdfSvg";
+import DownloadSvg from "@/public/SVG/DownloadSvg";
 
 import { PreviewCvPropType } from "@/types/globalTypes";
 import { CV_TEMPLATES } from "@/public/data/cvTemplates";
@@ -15,6 +21,8 @@ import Simple from "@/components/cv-templates/simple/Simple";
 
 import "./PreviewCv.css";
 
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 const PreviewCv = ({ inputData }: PreviewCvPropType) => {
   const searchParams = useSearchParams();
 
@@ -22,6 +30,20 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(searchParams.get("model-ales"));
 
   const cvType = searchParams.get("model-ales");
+
+  // PDF setup
+  const pdfTemplate = SimplePdf({ inputData });
+
+  const openPdf = () => {
+    const generatedPdf = pdfMake.createPdf(pdfTemplate);
+    generatedPdf.open();
+  };
+
+  const downloadPdf = () => {
+    const generatedPdf = pdfMake.createPdf(pdfTemplate);
+    generatedPdf.download();
+  };
+  // END pdf setup
 
   useEffect(() => {
     setSelectedTemplate(cvType);
@@ -43,13 +65,23 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
 
       {/* PREVIEW DISPLAY */}
       <section className={`preview section-wide ${isPreviewOpen ? "isOpen" : ""} `}>
+        {/* SELECTED TEMPLATE */}
         {selectedTemplate ? (
           <div className="cv-template-preview">
             <Simple inputData={inputData} />
+
+            <div className="pdf-actions">
+              <button type="button" className="btn-primary" onClick={openPdf}>
+                <ViewPdfSvg />
+              </button>
+              <button type="button" className="btn-primary" onClick={downloadPdf}>
+                <DownloadSvg />
+              </button>
+            </div>
           </div>
         ) : (
+          //  NO SELECTED TEMPLATE
           <div className={`ctl-box ${!selectedTemplate && "overflow-scroll"}`}>
-
             <ul className="cv-templates-list">
               {CV_TEMPLATES.map((item) => (
                 <li key={item.templateName}>
@@ -64,7 +96,6 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
                 </li>
               ))}
             </ul>
-
           </div>
         )}
 

@@ -38,8 +38,8 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
           {inputData.links.length > 0 &&
             inputData.links.map((item) => (
               <span key={item.title}>
-                <a href={item.link} target="_blank">
-                  <b className="link">{item.title}</b>
+                <a href={item.link} target="_blank" className="link">
+                  {item.title}
                 </a>
                 <span className="separator"> | </span>
               </span>
@@ -85,7 +85,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       {/* EDUCATION */}
       {inputData.education.length > 0 && (
         <div>
-          <h3>Education</h3>
+          <h3>Educatie</h3>
           <ul>
             {inputData.education.map((item) => (
               <li key={item.specialization}>
@@ -99,7 +99,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       {/* EXPERIENCE */}
       {inputData.experience.length > 0 && (
         <div>
-          <h3>Experience</h3>
+          <h3>Experienta</h3>
           <ul>
             {inputData.experience.map((item) => (
               <li key={item.position + item.company}>
