@@ -1,4 +1,11 @@
-import { EducationStateType, ExperienceStateType, LinksStateType, PreviewCvPropType, ProjectsStateType } from "@/types/globalTypes";
+import {
+  EducationStateType,
+  ExperienceStateType,
+  LinksStateType,
+  PreviewCvPropType,
+  ProjectsStateType,
+  VolunteeringStateType,
+} from "@/types/globalTypes";
 
 const SimplePdf = ({ inputData }: PreviewCvPropType) => {
   // Destructuring data
@@ -56,11 +63,48 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
       const formattedData: any[] = [];
 
       for (const item of data) {
+        // create description subcategory
+        const descFormattedData: any = [];
+
+        if (item.description.length > 0) {
+          for (const descItem of item.description) {
+            descFormattedData.push({ text: `- ${descItem}` });
+          }
+        }
+        // end
+
+        formattedData.push({
+          stack: [
+            {
+              text: [
+                { text: item.position, bold: true },
+                {
+                  text: ` - ${item.company}, `,
+                },
+                { text: `${item.start} - ` },
+                { text: `${item.untilNow ? "Prezent" : item.end}` },
+              ],
+              margin: [0, 5, 0, 0],
+            },
+            { stack: [...descFormattedData], margin: [20, 0, 0, 0] },
+          ],
+        });
+      }
+      return formattedData;
+    }
+    return [];
+  };
+
+  const formatDynamicVolunteeringData = (data: VolunteeringStateType[]) => {
+    if (data.length > 0) {
+      const formattedData: any[] = [];
+
+      for (const item of data) {
         formattedData.push({
           text: [
-            { text: item.position, bold: true },
+            { text: item.role, bold: true },
             {
-              text: ` - ${item.company}, `,
+              text: ` - ${item.organisation}, `,
             },
             { text: `${item.start} - ` },
             { text: `${item.untilNow ? "Prezent" : item.end}` },
@@ -79,6 +123,8 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
   const projectsDisplay = formatDynamicLinksData(projects);
   const educationDisplay = formatDynamicEducationData(education);
   const experienceDisplay = formatDynamicExperienceData(experience);
+  const volunteeringDisplay = formatDynamicVolunteeringData(volunteering);
+  const hobbiesDisplay = formatDynamicStringsData(hobbies);
 
   const docDefinition: any = {
     content: [
@@ -174,6 +220,28 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
         layout: "noBorders",
       },
       { stack: [...experienceDisplay], style: `${experienceDisplay.length > 0 ? "textStack" : ""}` },
+
+      // SECTION 6 - SUBHEADER - VOLUNTEERING
+      {
+        table: {
+          widths: [`${volunteeringDisplay.length > 0 ? "100%" : ""}`],
+          body: [
+            [{ text: `${volunteeringDisplay.length > 0 ? "Voluntariat" : ""}`, style: `${volunteeringDisplay.length > 0 ? "secondHeader" : ""}` }],
+          ],
+        },
+        layout: "noBorders",
+      },
+      { stack: [...volunteeringDisplay], style: `${volunteeringDisplay.length > 0 ? "textStack" : ""}` },
+
+      // SECTION 4 - SUBHEADER - Hobbies
+      {
+        table: {
+          widths: [`${hobbiesDisplay.length > 0 ? "100%" : ""}`],
+          body: [[{ text: `${hobbiesDisplay.length > 0 ? "Hobbi-uri" : ""}`, style: `${hobbiesDisplay.length > 0 ? "secondHeader" : ""}` }]],
+        },
+        layout: "noBorders",
+      },
+      { text: [...hobbiesDisplay], style: `${hobbiesDisplay.length > 0 ? "textArray" : ""}` },
     ],
 
     // STYLING
