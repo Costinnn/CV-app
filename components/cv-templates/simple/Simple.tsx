@@ -104,6 +104,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
             {inputData.experience.map((item) => (
               <li key={item.position + item.company}>
                 <b>{item.position}</b> - {item.company}, {item.start} - {item.untilNow ? "Prezent" : item.end}
+                <div>{item.description.length > 0 && item.description.map((desc) => <p key={desc}>- {desc}</p>)}</div>
               </li>
             ))}
           </ul>
@@ -120,7 +121,6 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
                 <li>
                   <b>{item.role}</b> - {item.organisation}, {item.start} - {item.untilNow ? "Prezent" : item.end}
                 </li>
-                <li>{item.description}</li>
               </div>
             ))}
           </ul>
@@ -133,8 +133,8 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
           <h3>Hobbi-uri</h3>
           <p>
             {inputData.hobbies.map((item) => (
-              <span key={item.title}>
-                {item.title} <span className="separator"> | </span>
+              <span key={item}>
+                {item} <span className="separator"> | </span>
               </span>
             ))}
           </p>

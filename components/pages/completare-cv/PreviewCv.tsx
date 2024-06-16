@@ -65,10 +65,12 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
 
       {/* PREVIEW DISPLAY */}
       <section className={`preview section-wide ${isPreviewOpen ? "isOpen" : ""} `}>
-        {/* SELECTED TEMPLATE */}
         {selectedTemplate ? (
+          //SELECTED TEMPLATE
           <div className="cv-template-preview">
-            <Simple inputData={inputData} />
+            <div className="pdf-display">
+              <Simple inputData={inputData} />
+            </div>
 
             <div className="pdf-actions">
               <button type="button" className="btn-primary" onClick={openPdf}>

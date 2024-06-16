@@ -5,12 +5,13 @@ import React, { useState } from "react";
 import AddSvg from "@/public/SVG/AddSvg";
 import TrashSvg from "@/public/SVG/TrashSvg";
 import OtherCategories from "./OtherCategories";
+import PreviewCv from "./PreviewCv";
+
 import {
   ContactType,
   EducationStateType,
   ExperienceStateType,
   GeneralInfoType,
-  HobbiesStateType,
   LinksStateType,
   OtherCategoriesFormType,
   PersonalizedStateType,
@@ -19,7 +20,6 @@ import {
 } from "@/types/globalTypes";
 
 import "./FillForm_Preview.css";
-import PreviewCv from "./PreviewCv";
 
 const FillForm_Preview = () => {
   // LOGIC STATE
@@ -43,9 +43,30 @@ const FillForm_Preview = () => {
     { school: "University of Chicago", specialization: "Bachelor degree graduate", start: "2012.05.01", end: "", untilNow: true },
   ]);
   const [experience, setExperience] = useState<ExperienceStateType[]>([
-    { position: "Senior web designer", company: "Creative agency", start: "2020.02.01", end: "", untilNow: true },
-    { position: "Graphic designer", company: "Market agency", start: "2015.02.03", end: "2020.01.03", untilNow: false },
-    { position: "Marketing manager", company: "Manufacturing agency", start: "2013.01.01", end: "2015.02.03", untilNow: false },
+    {
+      position: "Senior web designer",
+      company: "Creative agency",
+      description: ["efaefa", "wfawfwf", "dwaawfaff"],
+      start: "2020.02.01",
+      end: "",
+      untilNow: true,
+    },
+    {
+      position: "Graphic designer",
+      company: "Market agency",
+      description: ["efaefa", "wfawfwf", "dwaawfaff aegaegfa aeg aegagae gaegaeg aegae gaeg aeg aegeagaegae"],
+      start: "2015.02.03",
+      end: "2020.01.03",
+      untilNow: false,
+    },
+    {
+      position: "Marketing manager",
+      company: "Manufacturing agency",
+      description: ["efaefa", "wfawfwf", "dwaawfaff"],
+      start: "2013.01.01",
+      end: "2015.02.03",
+      untilNow: false,
+    },
   ]);
   const [competences, setCompetences] = useState<string[]>([
     "Adope photoshop",
@@ -59,17 +80,27 @@ const FillForm_Preview = () => {
     { title: "Food Logo", link: "" },
     { title: "Webside design", link: "" },
   ]);
-  const [volunteering, setVolunteering] = useState<VolunteeringStateType[]>([]);
+  const [volunteering, setVolunteering] = useState<VolunteeringStateType[]>([
+    {
+      role: "volunteer",
+      organisation: "Mercury",
+      start: "2021.02.01",
+      end: "",
+      untilNow: true,
+    },
+    {
+      role: "volunteer",
+      organisation: "Reng",
+      start: "2020.02.03",
+      end: "2021.01.01",
+      untilNow: false,
+    },
+  ]);
   const [links, setLinks] = useState<LinksStateType[]>([
     { title: "Github", link: "www.github.com" },
     { title: "Behance", link: "www.behance.com" },
   ]);
-  const [hobbies, setHobbies] = useState<HobbiesStateType[]>([
-    { title: "Reading books", description: "" },
-    { title: "Traveling", description: "" },
-    { title: "Playing chess", description: "" },
-    { title: "Running", description: "" },
-  ]);
+  const [hobbies, setHobbies] = useState<string[]>(["Reading books", "Traveling", "Playing chess", "Running"]);
   const [personalized, setPersonalized] = useState<PersonalizedStateType[]>([
     {
       sectionTitle: "References",
@@ -84,19 +115,26 @@ const FillForm_Preview = () => {
 
   // TEMPORARY STATE
   const [educationState, setEducationState] = useState<EducationStateType>({ school: "", specialization: "", start: "", end: "", untilNow: false });
-  const [experienceState, setExperienceState] = useState<ExperienceStateType>({ position: "", company: "", start: "", end: "", untilNow: false });
+  const [experienceState, setExperienceState] = useState<ExperienceStateType>({
+    position: "",
+    company: "",
+    description: [],
+    start: "",
+    end: "",
+    untilNow: false,
+  });
+  const [experienceDescState, setExperienceDescState] = useState<string>("");
   const [competencesState, setCompetencesState] = useState<string>("");
   const [projectsState, setProjectsState] = useState<ProjectsStateType>({ title: "", link: "" });
   const [volunteeringState, setVolunteeringState] = useState<VolunteeringStateType>({
     role: "",
     organisation: "",
-    description: "",
     start: "",
     end: "",
     untilNow: false,
   });
   const [linksState, setLinksState] = useState<LinksStateType>({ title: "", link: "" });
-  const [hobbiesState, setHobbiesState] = useState<HobbiesStateType>({ title: "", description: "" });
+  const [hobbiesState, setHobbiesState] = useState<string>("");
   const [personalizedState, setPersonalizedState] = useState<PersonalizedStateType>({
     sectionTitle: "",
     title: "",
@@ -122,7 +160,14 @@ const FillForm_Preview = () => {
   const handleExperience = () => {
     if (experienceState.position && experienceState.company) {
       setExperience((prev) => [...prev, experienceState]);
-      setExperienceState({ position: "", company: "", start: "", end: "", untilNow: false });
+      setExperienceState({ position: "", company: "", description: [], start: "", end: "", untilNow: false });
+    }
+  };
+
+  const handleExperienceDesc = () => {
+    if (experienceDescState) {
+      setExperienceState((prev) => ({ ...prev, description: [...experienceState.description, experienceDescState] }));
+      setExperienceDescState("");
     }
   };
 
@@ -146,7 +191,6 @@ const FillForm_Preview = () => {
       setVolunteeringState({
         role: "",
         organisation: "",
-        description: "",
         start: "",
         end: "",
         untilNow: false,
@@ -162,9 +206,9 @@ const FillForm_Preview = () => {
   };
 
   const handleHobbies = () => {
-    if (hobbiesState.title) {
+    if (hobbiesState) {
       setHobbies((prev) => [...prev, hobbiesState]);
-      setHobbiesState({ title: "", description: "" });
+      setHobbiesState("");
     }
   };
 
@@ -212,7 +256,7 @@ const FillForm_Preview = () => {
       setLinks((prev) => prev.filter((item) => item.title + item.link !== key));
     }
     if (category === "hobbies") {
-      setHobbies((prev) => prev.filter((item) => item.title !== key));
+      setHobbies((prev) => prev.filter((item) => item !== key));
     }
     if (category === "personalized") {
       setPersonalized((prev) => prev.filter((item) => item.sectionTitle + item.title !== key));
@@ -237,7 +281,8 @@ const FillForm_Preview = () => {
 
           {/* INTRODUCTION */}
           <label>
-            Introducere*
+            <span className="label-title">Introducere*</span>
+
             <textarea
               cols={30}
               rows={10}
@@ -350,8 +395,7 @@ const FillForm_Preview = () => {
             </label>
 
             <button type="button" className="btn-add" onClick={handleEducation}>
-              <AddSvg />
-              Adauga educatie
+              Adauga educatie <AddSvg />
             </button>
           </fieldset>
 
@@ -367,6 +411,7 @@ const FillForm_Preview = () => {
                   <li>
                     {item.start} - {item.untilNow ? "Prezent" : item.end}
                   </li>
+                  {item.description.length > 0 && item.description.map((desc) => <li key={desc}>- {desc}</li>)}
                   <button type="button" className="btn-delete" onClick={() => handleDelete("experience", item.company + item.position)}>
                     <TrashSvg />
                   </button>
@@ -391,6 +436,24 @@ const FillForm_Preview = () => {
                 value={experienceState.company}
                 onChange={(e) => setExperienceState((prev) => ({ ...prev, company: e.target.value }))}
               />
+            </label>
+
+            <label>
+              Task-uri
+              {experienceState.description.length > 0 && (
+                <ul className="list-type-secondary">
+                  {experienceState.description.map((item) => (
+                    <li key={item}>- {item}</li>
+                  ))}
+                </ul>
+              )}
+              <div className="input-box">
+                <input type="text" placeholder="..." value={experienceDescState} onChange={(e) => setExperienceDescState(e.target.value)} />
+
+                <button type="button" className="btn-add2" onClick={handleExperienceDesc}>
+                  <AddSvg color="#f5f5f5" />
+                </button>
+              </div>
             </label>
 
             <label>
@@ -422,14 +485,14 @@ const FillForm_Preview = () => {
             </label>
 
             <button type="button" className="btn-add" onClick={handleExperience}>
-              <AddSvg />
-              Adauga experienta
+              Adauga experienta <AddSvg />
             </button>
           </fieldset>
 
           {/* COMPETENCES */}
-          <label id="competences">
-            Competente
+          <label className="simple-strings">
+            <span className="label-title">Competente</span>
+
             {competences.length > 0 && (
               <ul>
                 {competences.map((item) => (
@@ -449,8 +512,8 @@ const FillForm_Preview = () => {
               </ul>
             )}
             <input type="text" placeholder="..." value={competencesState} onChange={(e) => setCompetencesState(e.target.value)} />
-            <button type="button" className="btn-primary2" onClick={handleCompetences}>
-              Adauga
+            <button type="button" className="btn-add" onClick={handleCompetences}>
+              Adauga competente <AddSvg />
             </button>
           </label>
 
@@ -494,8 +557,7 @@ const FillForm_Preview = () => {
               </label>
 
               <button type="button" className="btn-add" onClick={handleProjects}>
-                <AddSvg />
-                Adauga proiect
+                Adauga proiect <AddSvg />
               </button>
             </fieldset>
           )}
@@ -510,7 +572,6 @@ const FillForm_Preview = () => {
                   <ul key={item.role + item.organisation} className="list-type-1">
                     <li>{item.role}</li>
                     <li>{item.organisation}</li>
-                    <li>{item.description}</li>
                     <li>
                       {item.start} - {item.untilNow ? "Prezent" : item.end}
                     </li>
@@ -538,16 +599,6 @@ const FillForm_Preview = () => {
                   value={volunteeringState.organisation}
                   onChange={(e) => setVolunteeringState((prev) => ({ ...prev, organisation: e.target.value }))}
                 />
-              </label>
-
-              <label>
-                Descriere
-                <textarea
-                  cols={30}
-                  rows={5}
-                  value={volunteeringState.description}
-                  onChange={(e) => setVolunteeringState((prev) => ({ ...prev, description: e.target.value }))}
-                ></textarea>
               </label>
 
               <label>
@@ -579,8 +630,7 @@ const FillForm_Preview = () => {
               </label>
 
               <button type="button" className="btn-add" onClick={handleVolunteering}>
-                <AddSvg />
-                Adauga voluntariat
+                Adauga voluntariat <AddSvg />
               </button>
             </fieldset>
           )}
@@ -624,53 +674,38 @@ const FillForm_Preview = () => {
               </label>
 
               <button type="button" className="btn-add" onClick={handleLinks}>
-                <AddSvg />
-                Adauga link
+                Adauga link <AddSvg />
               </button>
             </fieldset>
           )}
 
           {/* HOBBIES */}
           {otherCategories.hobbies && (
-            <fieldset>
-              <legend>Hobbi-uri</legend>
-
-              {hobbies.length > 0 &&
-                hobbies.map((item) => (
-                  <ul key={item.title} className="list-type-1">
-                    <li>{item.title}</li>
-                    <li>{item.description.slice(0, 10)}...</li>
-                    <button type="button" className="btn-delete" onClick={() => handleDelete("hobbies", item.title)}>
-                      <TrashSvg />
-                    </button>
-                  </ul>
-                ))}
-
-              <label>
-                Titlu
-                <input
-                  type="text"
-                  placeholder="..."
-                  value={hobbiesState.title}
-                  onChange={(e) => setHobbiesState((prev) => ({ ...prev, title: e.target.value }))}
-                />
-              </label>
-
-              <label>
-                Descriere
-                <textarea
-                  cols={30}
-                  rows={5}
-                  value={hobbiesState.description}
-                  onChange={(e) => setHobbiesState((prev) => ({ ...prev, description: e.target.value }))}
-                ></textarea>
-              </label>
-
+            <label className="simple-strings">
+              <span className="label-title">Hobbi-uri</span>
+              {hobbies.length > 0 && (
+                <ul>
+                  {hobbies.map((item) => (
+                    <li key={item}>
+                      {item}
+                      <button
+                        type="button"
+                        className="btn-delete"
+                        onClick={(e) => {
+                          e.currentTarget !== e.target && handleDelete("hobbies", item);
+                        }}
+                      >
+                        <TrashSvg />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <input type="text" placeholder="..." value={hobbiesState} onChange={(e) => setHobbiesState(e.target.value)} />
               <button type="button" className="btn-add" onClick={handleHobbies}>
-                <AddSvg />
-                Adauga hobbi
+                Adauga hobbi <AddSvg />
               </button>
-            </fieldset>
+            </label>
           )}
 
           {/* PERSONALIZED */}
@@ -761,8 +796,7 @@ const FillForm_Preview = () => {
                 Pana in prezent
               </label>
 
-              <button type="button" className="btn-add" onClick={handlePersonalized}>
-                <AddSvg />
+              <button type="button" className="btn-primary2" onClick={handlePersonalized}>
                 Adauga sectiune
               </button>
             </fieldset>
