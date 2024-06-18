@@ -4,11 +4,15 @@
   color: var(--black);
 
   .close {
-    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--black);
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 10px;
+    padding: 7px;
+    border-radius: 5px;
   }
 
   /* SELECTED - template preview */
@@ -188,7 +192,8 @@
   bottom: 20px;
   right: 20px;
   background-color: var(--primary);
-  padding: 10px;
+  color: var(--white);
+  padding: 7px;
   border-radius: 10px;
 
   span {

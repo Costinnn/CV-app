@@ -9,7 +9,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import SimplePdf from "@/components/cv-templates/simple/SimplePdf";
 
-import LeftArrowSvg from "@/public/SVG/LeftArrowSvg";
+import PreviewSvg from "@/public/SVG/PreviewSvg";
 import CloseSvg from "@/public/SVG/CloseSvg";
 import ViewPdfSvg from "@/public/SVG/ViewPdfSvg";
 import DownloadSvg from "@/public/SVG/DownloadSvg";
@@ -59,8 +59,8 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
           setiIsPreviewOpen(true);
         }}
       >
-        <LeftArrowSvg />
-        <span>Previzualizeaza & Descarca</span>
+        <PreviewSvg />
+        <span>Previzualizeaza / Descarca</span>
       </button>
 
       {/* PREVIEW DISPLAY */}
@@ -93,7 +93,7 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
 
                   <Link href={`/completare-cv?model-ales=${item.templateName}`} className="text">
                     <h2>{item.templateName}</h2>
-                    <span className="btn-primary2">Alege</span>
+                    <span className="btn-primary2">Alege acest model</span>
                   </Link>
                 </li>
               ))}
@@ -103,7 +103,7 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
 
         {/* ACTIVE ON MOBILE */}
         <button type="button" className="close" onClick={() => setiIsPreviewOpen(false)}>
-          <CloseSvg color="#969799" size="30" />
+          <CloseSvg color="#a89bff" size="25" />
         </button>
       </section>
     </>

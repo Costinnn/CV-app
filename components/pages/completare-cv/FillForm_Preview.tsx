@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import AddSvg from "@/public/SVG/AddSvg";
 import TrashSvg from "@/public/SVG/TrashSvg";
@@ -23,6 +24,8 @@ import {
 import "./FillForm_Preview.css";
 
 const FillForm_Preview = () => {
+  const router = useRouter();
+
   // LOGIC STATE
   const [otherCategories, setOtherCategories] = useState<OtherCategoriesFormType>({
     projects: false,
@@ -32,7 +35,7 @@ const FillForm_Preview = () => {
     personalized: false,
   });
 
-  // FINAL DATA VALUES
+  //#region  FINAL DATA VALUES
   const [generalInfo, setGeneralInfo] = useState<GeneralInfoType>({
     name: "Noel Taylor",
     description:
@@ -174,9 +177,14 @@ const FillForm_Preview = () => {
     content: [],
   });
   const [personalizedDescState, setPersonalizedDescState] = useState<string>("");
+  //#endregion
 
-  // HANDLERS
+  //#region HANDLERS
   const handleOtherCategories = (category: "projects" | "volunteering" | "links" | "hobbies" | "personalized") => {
+    if (!otherCategories[category]) {
+      router.push(`#s-${category}`);
+    }
+
     setOtherCategories((prev) => ({ ...prev, [category]: !prev[category] }));
   };
 
@@ -301,9 +309,11 @@ const FillForm_Preview = () => {
       setPersonalized((prev) => prev.filter((item) => item.sectionTitle !== key));
     }
   };
+  //#endregion
 
   return (
     <div className="fillform_preview">
+      
       <section className="fill-form section-wide">
         <form>
           {/* PERSONAL INFO */}
@@ -564,7 +574,7 @@ const FillForm_Preview = () => {
           {/* ----OTHER CATEGORIES---- */}
           {/* PROJECTS */}
           {otherCategories.projects && (
-            <fieldset>
+            <fieldset id="s-projects">
               <legend>Proiecte</legend>
 
               {projects.length > 0 && (
@@ -608,7 +618,7 @@ const FillForm_Preview = () => {
 
           {/* VOLUNTEERING */}
           {otherCategories.volunteering && (
-            <fieldset>
+            <fieldset id="s-volunteering">
               <legend>Voluntariat</legend>
 
               {volunteering.length > 0 &&
@@ -681,7 +691,7 @@ const FillForm_Preview = () => {
 
           {/* LINKS */}
           {otherCategories.links && (
-            <fieldset>
+            <fieldset id="s-links">
               <legend>Link-uri</legend>
 
               {links.length > 0 && (
@@ -725,7 +735,7 @@ const FillForm_Preview = () => {
 
           {/* HOBBIES */}
           {otherCategories.hobbies && (
-            <label className="simple-strings">
+            <label className="simple-strings" id="s-hobbies">
               <span className="label-title">Hobbi-uri</span>
               {hobbies.length > 0 && (
                 <ul>
@@ -754,7 +764,7 @@ const FillForm_Preview = () => {
 
           {/* PERSONALIZED */}
           {otherCategories.personalized && (
-            <fieldset>
+            <fieldset id="s-personalized">
               <legend>Sectiune personalizata</legend>
 
               {/* display sections */}

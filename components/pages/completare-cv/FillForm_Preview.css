@@ -166,6 +166,14 @@
         }
       }
 
+      #s-projects,
+      #s-volunteering,
+      #s-links,
+      #s-hobbies,
+      #s-personalized {
+        scroll-margin-top: 100px;
+      }
+
       .simple-strings {
         display: block;
         width: 100%;
