@@ -14,6 +14,7 @@ import {
   GeneralInfoType,
   LinksStateType,
   OtherCategoriesFormType,
+  PersonalizedContentType,
   PersonalizedStateType,
   ProjectsStateType,
   VolunteeringStateType,
@@ -104,12 +105,37 @@ const FillForm_Preview = () => {
   const [personalized, setPersonalized] = useState<PersonalizedStateType[]>([
     {
       sectionTitle: "References",
-      title: "Darwin B. Magna",
-      link: "",
-      description: "2813 Shobe Lane Mancos",
-      start: "",
-      end: "",
-      untilNow: false,
+      content: [
+        {
+          title: "Darwin Bs. Magna",
+          link: "",
+          description: ["2813 Shobe Lane Mancos", "dafsdagagasrhgba", "gWGfwewefgwaegf"],
+          start: "2020.02.03",
+          end: "",
+          untilNow: true,
+        },
+        {
+          title: "Darwin B. Magna",
+          link: "",
+          description: ["2813 Shobe Lane Mancos", "dafsdagagasrhgba", "gWGfwewefgwaegf"],
+          start: "2020.02.03",
+          end: "",
+          untilNow: true,
+        },
+      ],
+    },
+    {
+      sectionTitle: "References23123",
+      content: [
+        {
+          title: "Darwin B. Magna",
+          link: "",
+          description: ["2813 Shobe Lane Mancos", "dafsdagagasrhgba", "gWGfwewefgwaegf"],
+          start: "2020.02.03",
+          end: "",
+          untilNow: true,
+        },
+      ],
     },
   ]);
 
@@ -135,15 +161,19 @@ const FillForm_Preview = () => {
   });
   const [linksState, setLinksState] = useState<LinksStateType>({ title: "", link: "" });
   const [hobbiesState, setHobbiesState] = useState<string>("");
-  const [personalizedState, setPersonalizedState] = useState<PersonalizedStateType>({
-    sectionTitle: "",
+  const [personalizedContentState, setPersonalizedContentState] = useState<PersonalizedContentType>({
     title: "",
     link: "",
-    description: "",
+    description: [],
     start: "",
     end: "",
     untilNow: false,
   });
+  const [personalizedState, setPersonalizedState] = useState<PersonalizedStateType>({
+    sectionTitle: "",
+    content: [],
+  });
+  const [personalizedDescState, setPersonalizedDescState] = useState<string>("");
 
   // HANDLERS
   const handleOtherCategories = (category: "projects" | "volunteering" | "links" | "hobbies" | "personalized") => {
@@ -213,17 +243,26 @@ const FillForm_Preview = () => {
   };
 
   const handlePersonalized = () => {
-    if (personalizedState.title && personalizedState.sectionTitle) {
+    if (personalizedState.sectionTitle) {
       setPersonalized((prev) => [...prev, personalizedState]);
       setPersonalizedState({
         sectionTitle: "",
-        title: "",
-        link: "",
-        description: "",
-        start: "",
-        end: "",
-        untilNow: false,
+        content: [],
       });
+    }
+  };
+
+  const handlePersonalizedState = () => {
+    if (personalizedContentState.title) {
+      setPersonalizedState((prev) => ({ ...prev, content: [...personalizedState.content, personalizedContentState] }));
+      setPersonalizedContentState({ title: "", link: "", description: [], start: "", end: "", untilNow: false });
+    }
+  };
+
+  const handlePersonalizedDesc = () => {
+    if (personalizedDescState) {
+      setPersonalizedContentState((prev) => ({ ...prev, description: [...personalizedContentState.description, personalizedDescState] }));
+      setPersonalizedDescState("");
     }
   };
 
@@ -259,7 +298,7 @@ const FillForm_Preview = () => {
       setHobbies((prev) => prev.filter((item) => item !== key));
     }
     if (category === "personalized") {
-      setPersonalized((prev) => prev.filter((item) => item.sectionTitle + item.title !== key));
+      setPersonalized((prev) => prev.filter((item) => item.sectionTitle !== key));
     }
   };
 
@@ -411,7 +450,12 @@ const FillForm_Preview = () => {
                   <li>
                     {item.start} - {item.untilNow ? "Prezent" : item.end}
                   </li>
-                  {item.description.length > 0 && item.description.map((desc) => <li key={desc}>- {desc}</li>)}
+                  {item.description.length > 0 &&
+                    item.description.map((desc) => (
+                      <li style={{ marginLeft: "20px" }} key={desc}>
+                        - {desc}
+                      </li>
+                    ))}
                   <button type="button" className="btn-delete" onClick={() => handleDelete("experience", item.company + item.position)}>
                     <TrashSvg />
                   </button>
@@ -713,16 +757,28 @@ const FillForm_Preview = () => {
             <fieldset>
               <legend>Sectiune personalizata</legend>
 
+              {/* display sections */}
               {personalized.length > 0 &&
                 personalized.map((item) => (
-                  <ul key={item.sectionTitle + item.title} className="list-type-1">
-                    <li>{item.sectionTitle}</li>
-                    <li>{item.title}</li>
-                    <li>{item.description.slice(0, 10)}...</li>
-                    <li>
-                      {item.start} - {item.untilNow ? "Prezent" : item.end}
-                    </li>
-                    <button type="button" className="btn-delete" onClick={() => handleDelete("personalized", item.sectionTitle + item.title)}>
+                  <ul key={item.sectionTitle} className="list-type-1">
+                    <li style={{ textAlign: "center", fontSize: "17px" }}>{item.sectionTitle}</li>
+                    {item.content.length > 0 &&
+                      item.content.map((cItem) => (
+                        <div key={cItem.title} style={{ marginTop: "20px" }}>
+                          <li>{cItem.title}</li>
+                          <li>
+                            {cItem.start} - {cItem.untilNow ? "Prezent" : cItem.end}
+                          </li>
+                          {cItem.description.length > 0 &&
+                            cItem.description.map((desc) => (
+                              <li style={{ marginLeft: "20px" }} key={desc}>
+                                - {desc}
+                              </li>
+                            ))}
+                        </div>
+                      ))}
+
+                    <button type="button" className="btn-delete" onClick={() => handleDelete("personalized", item.sectionTitle)}>
                       <TrashSvg />
                     </button>
                   </ul>
@@ -738,63 +794,94 @@ const FillForm_Preview = () => {
                 />
               </label>
 
-              <label>
-                Titlu
-                <input
-                  type="text"
-                  placeholder="..."
-                  value={personalizedState.title}
-                  onChange={(e) => setPersonalizedState((prev) => ({ ...prev, title: e.target.value }))}
-                />
-              </label>
+              <div className="label-group">
+                {/* display section content */}
+                {personalizedState.content.length > 0 &&
+                  personalizedState.content.map((item) => (
+                    <ul key={item.title + item.link}>
+                      <li>{item.title}</li>
+                      <li>
+                        {item.start} - {item.untilNow ? "Prezent" : item.end}
+                      </li>
+                      {item.description.length > 0 &&
+                        item.description.map((desc) => (
+                          <li style={{ marginLeft: "20px" }} key={desc}>
+                            - {desc}
+                          </li>
+                        ))}
+                    </ul>
+                  ))}
 
-              <label>
-                Link (URL)
-                <input
-                  type="text"
-                  placeholder="..."
-                  value={personalizedState.link}
-                  onChange={(e) => setPersonalizedState((prev) => ({ ...prev, link: e.target.value }))}
-                />
-              </label>
-
-              <label>
-                Descriere
-                <textarea
-                  cols={30}
-                  rows={5}
-                  value={personalizedState.description}
-                  onChange={(e) => setPersonalizedState((prev) => ({ ...prev, description: e.target.value }))}
-                ></textarea>
-              </label>
-
-              <label>
-                Perioada
-                <div>
+                <label>
+                  Titlu
                   <input
-                    type="date"
-                    value={personalizedState.start}
-                    onChange={(e) => setPersonalizedState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
+                    type="text"
+                    placeholder="..."
+                    value={personalizedContentState.title}
+                    onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, title: e.target.value }))}
                   />
-                  <input
-                    type="date"
-                    value={personalizedState.end}
-                    onChange={(e) => setPersonalizedState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
-                  />
-                </div>
-              </label>
+                </label>
 
-              <label className="checkbox">
-                <input
-                  type="checkbox"
-                  name=""
-                  id=""
-                  checked={personalizedState.untilNow}
-                  onChange={() => setPersonalizedState((prev) => ({ ...prev, untilNow: !personalizedState.untilNow }))}
-                />
-                <span className="checkmark"></span>
-                Pana in prezent
-              </label>
+                <label>
+                  Link (URL)
+                  <input
+                    type="text"
+                    placeholder="..."
+                    value={personalizedContentState.link}
+                    onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, link: e.target.value }))}
+                  />
+                </label>
+
+                <label>
+                  Descriere
+                  {personalizedContentState.description.length > 0 && (
+                    <ul className="list-type-secondary">
+                      {personalizedContentState.description.map((item) => (
+                        <li key={item}>- {item}</li>
+                      ))}
+                    </ul>
+                  )}
+                  <div className="input-box">
+                    <input type="text" placeholder="..." value={personalizedDescState} onChange={(e) => setPersonalizedDescState(e.target.value)} />
+
+                    <button type="button" className="btn-add2" onClick={handlePersonalizedDesc}>
+                      <AddSvg color="#f5f5f5" />
+                    </button>
+                  </div>
+                </label>
+
+                <label>
+                  Perioada
+                  <div>
+                    <input
+                      type="date"
+                      value={personalizedContentState.start}
+                      onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
+                    />
+                    <input
+                      type="date"
+                      value={personalizedContentState.end}
+                      onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
+                    />
+                  </div>
+                </label>
+
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    checked={personalizedContentState.untilNow}
+                    onChange={() => setPersonalizedContentState((prev) => ({ ...prev, untilNow: !personalizedContentState.untilNow }))}
+                  />
+                  <span className="checkmark"></span>
+                  Pana in prezent
+                </label>
+
+                <button type="button" className="btn-add" onClick={handlePersonalizedState}>
+                  Adauga continut <AddSvg />
+                </button>
+              </div>
 
               <button type="button" className="btn-primary2" onClick={handlePersonalized}>
                 Adauga sectiune

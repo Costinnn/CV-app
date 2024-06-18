@@ -142,7 +142,20 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       )}
 
       {/* PERSONALIZED */}
-      {inputData.personalized.length > 0 && <ul></ul>}
+      {inputData.personalized.length > 0 &&
+        inputData.personalized.map((item) => (
+          <div key={item.sectionTitle}>
+            <h3>{item.sectionTitle}</h3>
+            <ul>
+              {item.content.map((cItem) => (
+                <li key={cItem.title + cItem.link}>
+                  <b>{cItem.title}</b> , {cItem.start} - {cItem.untilNow ? "Prezent" : cItem.end}
+                  <div>{cItem.description.length > 0 && cItem.description.map((desc) => <p key={desc}>- {desc}</p>)}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
     </div>
   );
 };

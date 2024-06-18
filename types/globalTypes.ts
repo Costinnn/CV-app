@@ -35,14 +35,11 @@ export type LinksStateType = { title: string; link: string };
 
 export type HobbiesStateType = { title: string };
 
+export type PersonalizedContentType = { title: string; link: string; description: string[]; start: string; end: string; untilNow: boolean };
+
 export type PersonalizedStateType = {
   sectionTitle: string;
-  title: string;
-  link: string;
-  description: string;
-  start: string;
-  end: string;
-  untilNow: boolean;
+  content: PersonalizedContentType[];
 };
 
 export type PreviewCvPropType = {
