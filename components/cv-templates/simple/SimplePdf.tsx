@@ -2,6 +2,7 @@ import {
   EducationStateType,
   ExperienceStateType,
   LinksStateType,
+  PersonalizedStateType,
   PreviewCvPropType,
   ProjectsStateType,
   VolunteeringStateType,
@@ -117,6 +118,56 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
     return [];
   };
 
+  const formatDynamicPersonalizedData = (data: PersonalizedStateType[]) => {
+    if (data.length > 0) {
+      const formattedData: any[] = [];
+
+      for (const pItem of data) {
+        const content = [];
+        const subheader = {
+          table: {
+            widths: ["100%"],
+            body: [[{ text: pItem.sectionTitle, style: "secondHeader" }]],
+          },
+          layout: "noBorders",
+        };
+
+        for (const [idx, pContentItem] of pItem.content.entries()) {
+          // create description subcategory
+          const descFormattedData: any = [];
+
+          if (pContentItem.description.length > 0) {
+            for (const descItem of pContentItem.description) {
+              descFormattedData.push({ text: `- ${descItem}` });
+            }
+          }
+          // end
+
+          content.push({
+            stack: [
+              {
+                text: [
+                  { text: `${pContentItem.title}, `, bold: true },
+
+                  { text: `${pContentItem.start} - ` },
+                  { text: `${pContentItem.untilNow ? "Prezent" : pContentItem.end}` },
+                ],
+                margin: [0, 5, 0, 0],
+              },
+              { stack: [...descFormattedData], margin: [20, 0, 0, 0] },
+            ],
+            style: `${idx == pItem.content.length - 1 ? "textStack" : ""}`,
+          });
+        }
+
+        formattedData.push(subheader, content);
+      }
+
+      return formattedData;
+    }
+    return [];
+  };
+
   // CREATE VARIABLES TO DISPLAY
   const linksDisplay = formatDynamicLinksData(links);
   const competencesDisplay = formatDynamicStringsData(competences);
@@ -125,6 +176,7 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
   const experienceDisplay = formatDynamicExperienceData(experience);
   const volunteeringDisplay = formatDynamicVolunteeringData(volunteering);
   const hobbiesDisplay = formatDynamicStringsData(hobbies);
+  const personalizedDisplay = formatDynamicPersonalizedData(personalized);
 
   const docDefinition: any = {
     content: [
@@ -233,7 +285,7 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
       },
       { stack: [...volunteeringDisplay], style: `${volunteeringDisplay.length > 0 ? "textStack" : ""}` },
 
-      // SECTION 4 - SUBHEADER - Hobbies
+      // SECTION 7 - SUBHEADER - Hobbies
       {
         table: {
           widths: [`${hobbiesDisplay.length > 0 ? "100%" : ""}`],
@@ -242,6 +294,9 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
         layout: "noBorders",
       },
       { text: [...hobbiesDisplay], style: `${hobbiesDisplay.length > 0 ? "textArray" : ""}` },
+
+      // SECTION 8 - SUBHEADER - PERSONALIZED
+      ...personalizedDisplay,
     ],
 
     // STYLING
