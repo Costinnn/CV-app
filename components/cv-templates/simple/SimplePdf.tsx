@@ -187,8 +187,15 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
       {
         // used table to be able to fill fullWidth of background color
         table: {
-          widths: ["100%"],
-          body: [[{ text: "Contact", style: "secondHeader" }]],
+          widths: [`${contact.email || contact.phone || contact.address ? "100%" : ""}`],
+          body: [
+            [
+              {
+                text: `${contact.email || contact.phone || contact.address ? "Contact" : ""}`,
+                style: `${contact.email || contact.phone || contact.address ? "secondHeader" : ""}`,
+              },
+            ],
+          ],
         },
         layout: "noBorders",
       },

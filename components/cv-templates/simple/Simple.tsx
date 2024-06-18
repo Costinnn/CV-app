@@ -10,48 +10,54 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       <h2>{inputData.generalInfo.name}</h2>
 
       {/* CONTACT */}
-      <div>
-        <h3>Contact</h3>
+      {inputData.contact.address ||
+        inputData.contact.email ||
+        (inputData.contact.phone && (
+          <div>
+            <h3>Contact</h3>
 
-        <p>
-          {inputData.contact.email && (
-            <>
-              <b>Email: </b>
-              <a href={`mailto:${inputData.contact.email}`} className="link">
-                {inputData.contact.email}
-              </a>
-            </>
-          )}
-          <span className="separator"> | </span>
-          {inputData.contact.phone && (
-            <>
-              <b>Phone:</b> {inputData.contact.phone}
-            </>
-          )}
-          <span className="separator"> | </span>
-          {inputData.contact.address && (
-            <>
-              <b>Address:</b> {inputData.contact.address}
-            </>
-          )}
-          <span className="separator"> | </span>
-          {inputData.links.length > 0 &&
-            inputData.links.map((item) => (
-              <span key={item.title}>
-                <a href={item.link} target="_blank" className="link">
-                  {item.title}
-                </a>
-                <span className="separator"> | </span>
-              </span>
-            ))}
-        </p>
-      </div>
+            <p>
+              {inputData.contact.email && (
+                <>
+                  <b>Email: </b>
+                  <a href={`mailto:${inputData.contact.email}`} className="link">
+                    {inputData.contact.email}
+                  </a>
+                </>
+              )}
+              <span className="separator"> | </span>
+              {inputData.contact.phone && (
+                <>
+                  <b>Phone:</b> {inputData.contact.phone}
+                </>
+              )}
+              <span className="separator"> | </span>
+              {inputData.contact.address && (
+                <>
+                  <b>Address:</b> {inputData.contact.address}
+                </>
+              )}
+              <span className="separator"> | </span>
+              {inputData.links.length > 0 &&
+                inputData.links.map((item) => (
+                  <span key={item.title}>
+                    <a href={item.link} target="_blank" className="link">
+                      {item.title}
+                    </a>
+                    <span className="separator"> | </span>
+                  </span>
+                ))}
+            </p>
+          </div>
+        ))}
 
       {/* ABOUT */}
-      <div>
-        <h3>Despre</h3>
-        <p>{inputData.generalInfo.description}</p>
-      </div>
+      {inputData.generalInfo.description && (
+        <div>
+          <h3>Despre</h3>
+          <p>{inputData.generalInfo.description}</p>
+        </div>
+      )}
 
       {/* COMPETENCES */}
       {inputData.competences.length > 0 && (

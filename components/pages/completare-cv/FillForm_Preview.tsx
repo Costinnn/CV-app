@@ -11,6 +11,7 @@ import PreviewCv from "./PreviewCv";
 import {
   ContactType,
   EducationStateType,
+  ErrorStateType,
   ExperienceStateType,
   GeneralInfoType,
   LinksStateType,
@@ -34,115 +35,32 @@ const FillForm_Preview = () => {
     hobbies: false,
     personalized: false,
   });
+  const [errorState, setErrorState] = useState<ErrorStateType>({
+    education: { school: false, specialization: false, start: false, end: false },
+    experience: { position: false, company: false, start: false, end: false },
+    competences: false,
+    projects: { title: false, link: false },
+    volunteering: { role: false, organisation: false },
+    links: { title: false, link: false },
+    hobbies: false,
+    personalized: false,
+    personalizedContent: false,
+  });
 
   //#region  FINAL DATA VALUES
-  const [generalInfo, setGeneralInfo] = useState<GeneralInfoType>({
-    name: "Noel Taylor",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  });
-  const [contact, setContact] = useState<ContactType>({ phone: "0750 000 000", email: "noel@gmail.com", address: "769 Lincoln Park, ML" });
-  const [education, setEducation] = useState<EducationStateType[]>([
-    { school: "Stanford University", specialization: "Master degree graduate", start: "2011.01.01", end: "2012.01.05", untilNow: false },
-    { school: "University of Chicago", specialization: "Bachelor degree graduate", start: "2012.05.01", end: "", untilNow: true },
-  ]);
-  const [experience, setExperience] = useState<ExperienceStateType[]>([
-    {
-      position: "Senior web designer",
-      company: "Creative agency",
-      description: ["efaefa", "wfawfwf", "dwaawfaff"],
-      start: "2020.02.01",
-      end: "",
-      untilNow: true,
-    },
-    {
-      position: "Graphic designer",
-      company: "Market agency",
-      description: ["efaefa", "wfawfwf", "dwaawfaff aegaegfa aeg aegagae gaegaeg aegae gaeg aeg aegeagaegae"],
-      start: "2015.02.03",
-      end: "2020.01.03",
-      untilNow: false,
-    },
-    {
-      position: "Marketing manager",
-      company: "Manufacturing agency",
-      description: ["efaefa", "wfawfwf", "dwaawfaff"],
-      start: "2013.01.01",
-      end: "2015.02.03",
-      untilNow: false,
-    },
-  ]);
-  const [competences, setCompetences] = useState<string[]>([
-    "Adope photoshop",
-    "Microsoft Word",
-    "HTML/CSS",
-    "Adobe illustrator",
-    "Microsoft powerpoint",
-  ]);
-  const [projects, setProjects] = useState<ProjectsStateType[]>([
-    { title: "Residential Rebranding", link: "" },
-    { title: "Food Logo", link: "" },
-    { title: "Webside design", link: "" },
-  ]);
-  const [volunteering, setVolunteering] = useState<VolunteeringStateType[]>([
-    {
-      role: "volunteer",
-      organisation: "Mercury",
-      start: "2021.02.01",
-      end: "",
-      untilNow: true,
-    },
-    {
-      role: "volunteer",
-      organisation: "Reng",
-      start: "2020.02.03",
-      end: "2021.01.01",
-      untilNow: false,
-    },
-  ]);
-  const [links, setLinks] = useState<LinksStateType[]>([
-    { title: "Github", link: "www.github.com" },
-    { title: "Behance", link: "www.behance.com" },
-  ]);
-  const [hobbies, setHobbies] = useState<string[]>(["Reading books", "Traveling", "Playing chess", "Running"]);
-  const [personalized, setPersonalized] = useState<PersonalizedStateType[]>([
-    {
-      sectionTitle: "References",
-      content: [
-        {
-          title: "Darwin Bs. Magna",
-          link: "",
-          description: ["2813 Shobe Lane Mancos", "dafsdagagasrhgba", "gWGfwewefgwaegf"],
-          start: "2020.02.03",
-          end: "",
-          untilNow: true,
-        },
-        {
-          title: "Darwin B. Magna",
-          link: "",
-          description: ["2813 Shobe Lane Mancos", "dafsdagagasrhgba", "gWGfwewefgwaegf"],
-          start: "2020.02.03",
-          end: "",
-          untilNow: true,
-        },
-      ],
-    },
-    {
-      sectionTitle: "References23123",
-      content: [
-        {
-          title: "Darwin B. Magna",
-          link: "",
-          description: ["2813 Shobe Lane Mancos", "dafsdagagasrhgba", "gWGfwewefgwaegf"],
-          start: "2020.02.03",
-          end: "",
-          untilNow: true,
-        },
-      ],
-    },
-  ]);
+  const [generalInfo, setGeneralInfo] = useState<GeneralInfoType>({ name: "", description: "" });
+  const [contact, setContact] = useState<ContactType>({ phone: "", email: "", address: "" });
+  const [education, setEducation] = useState<EducationStateType[]>([]);
+  const [experience, setExperience] = useState<ExperienceStateType[]>([]);
+  const [competences, setCompetences] = useState<string[]>([]);
+  const [projects, setProjects] = useState<ProjectsStateType[]>([]);
+  const [volunteering, setVolunteering] = useState<VolunteeringStateType[]>([]);
+  const [links, setLinks] = useState<LinksStateType[]>([]);
+  const [hobbies, setHobbies] = useState<string[]>([]);
+  const [personalized, setPersonalized] = useState<PersonalizedStateType[]>([]);
+  // #endregion
 
-  // TEMPORARY STATE
+  //#region TEMPORARY DATA STATE
   const [educationState, setEducationState] = useState<EducationStateType>({ school: "", specialization: "", start: "", end: "", untilNow: false });
   const [experienceState, setExperienceState] = useState<ExperienceStateType>({
     position: "",
@@ -189,16 +107,78 @@ const FillForm_Preview = () => {
   };
 
   const handleEducation = () => {
-    if (educationState.school && educationState.specialization) {
+    // Error state check
+    !educationState.school
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, school: true } }))
+      : errorState.education.school
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, school: false } }))
+      : "";
+
+    !educationState.specialization
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, specialization: true } }))
+      : errorState.education.specialization
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, specialization: false } }))
+      : "";
+
+    !educationState.start
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, start: true } }))
+      : errorState.education.start
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, start: false } }))
+      : "";
+
+    !educationState.end || !educationState.untilNow
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, end: true } }))
+      : errorState.education.end
+      ? setErrorState((prev) => ({ ...prev, education: { ...prev.education, end: false } }))
+      : "";
+
+    // update education data
+    if (educationState.school && educationState.specialization && educationState.start && (educationState.end || educationState.untilNow)) {
       setEducation((prev) => [...prev, educationState]);
       setEducationState({ school: "", specialization: "", start: "", end: "", untilNow: false });
+      setErrorState((prev) => ({ ...prev, education: { school: false, specialization: false, start: false, end: false } }));
+    } else {
+      setTimeout(() => {
+        setErrorState((prev) => ({ ...prev, education: { school: false, specialization: false, start: false, end: false } }));
+      }, 7000);
     }
   };
 
   const handleExperience = () => {
-    if (experienceState.position && experienceState.company) {
+    // Error state check
+    !experienceState.position
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, position: true } }))
+      : errorState.experience.position
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, position: false } }))
+      : "";
+
+    !experienceState.company
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, company: true } }))
+      : errorState.experience.company
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, company: false } }))
+      : "";
+
+    !experienceState.start
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, start: true } }))
+      : errorState.experience.start
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, start: false } }))
+      : "";
+
+    !experienceState.end || !experienceState.untilNow
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, end: true } }))
+      : errorState.experience.end
+      ? setErrorState((prev) => ({ ...prev, experience: { ...prev.experience, end: false } }))
+      : "";
+
+    // update experience data
+    if (experienceState.position && experienceState.company && experienceState.start && (experienceState.end || experienceState.untilNow)) {
       setExperience((prev) => [...prev, experienceState]);
       setExperienceState({ position: "", company: "", description: [], start: "", end: "", untilNow: false });
+      setErrorState((prev) => ({ ...prev, experience: { position: false, company: false, start: false, end: false } }));
+    } else {
+      setTimeout(() => {
+        setErrorState((prev) => ({ ...prev, experience: { position: false, company: false, start: false, end: false } }));
+      }, 7000);
     }
   };
 
@@ -210,20 +190,64 @@ const FillForm_Preview = () => {
   };
 
   const handleCompetences = () => {
+    // Error state check
+    !competencesState
+      ? setErrorState((prev) => ({ ...prev, competences: true }))
+      : errorState.competences
+      ? setErrorState((prev) => ({ ...prev, competences: false }))
+      : "";
+
+    // update competences
     if (competencesState) {
       setCompetences((prev) => [...prev, competencesState]);
       setCompetencesState("");
+      setErrorState((prev) => ({ ...prev, competences: false }));
+    } else {
+      setTimeout(() => setErrorState((prev) => ({ ...prev, competences: false })), 7000);
     }
   };
 
   const handleProjects = () => {
+    // Error state check
+    !projectsState.title
+      ? setErrorState((prev) => ({ ...prev, projects: { ...prev.projects, title: true } }))
+      : errorState.projects.title
+      ? setErrorState((prev) => ({ ...prev, projects: { ...prev.projects, title: false } }))
+      : "";
+
+    !projectsState.link
+      ? setErrorState((prev) => ({ ...prev, projects: { ...prev.projects, link: true } }))
+      : errorState.projects.link
+      ? setErrorState((prev) => ({ ...prev, projects: { ...prev.projects, link: false } }))
+      : "";
+
+    // update state
     if (projectsState.title && projectsState.link) {
       setProjects((prev) => [...prev, projectsState]);
       setProjectsState({ title: "", link: "" });
+      setErrorState((prev) => ({ ...prev, projects: { title: false, link: false } }));
+    } else {
+      setTimeout(() => {
+        setErrorState((prev) => ({ ...prev, projects: { title: false, link: false } }));
+      }, 7000);
     }
   };
 
   const handleVolunteering = () => {
+    // Error state check
+    !volunteeringState.role
+      ? setErrorState((prev) => ({ ...prev, volunteering: { ...prev.volunteering, role: true } }))
+      : errorState.volunteering.role
+      ? setErrorState((prev) => ({ ...prev, volunteering: { ...prev.volunteering, role: false } }))
+      : "";
+
+    !volunteeringState.organisation
+      ? setErrorState((prev) => ({ ...prev, volunteering: { ...prev.volunteering, organisation: true } }))
+      : errorState.volunteering.organisation
+      ? setErrorState((prev) => ({ ...prev, volunteering: { ...prev.volunteering, organisation: false } }))
+      : "";
+
+    // update state
     if (volunteeringState.role && volunteeringState.organisation) {
       setVolunteering((prev) => [...prev, volunteeringState]);
       setVolunteeringState({
@@ -233,37 +257,95 @@ const FillForm_Preview = () => {
         end: "",
         untilNow: false,
       });
+      setErrorState((prev) => ({ ...prev, volunteering: { role: false, organisation: false } }));
+    } else {
+      setTimeout(() => {
+        setErrorState((prev) => ({ ...prev, volunteering: { role: false, organisation: false } }));
+      }, 7000);
     }
   };
 
   const handleLinks = () => {
+    // Error state check
+    !linksState.title
+      ? setErrorState((prev) => ({ ...prev, links: { ...prev.links, title: true } }))
+      : errorState.links.title
+      ? setErrorState((prev) => ({ ...prev, links: { ...prev.links, title: false } }))
+      : "";
+
+    !linksState.link
+      ? setErrorState((prev) => ({ ...prev, links: { ...prev.links, link: true } }))
+      : errorState.links.link
+      ? setErrorState((prev) => ({ ...prev, links: { ...prev.links, link: false } }))
+      : "";
+
+    // update state
     if (linksState.title && linksState.link) {
       setLinks((prev) => [...prev, linksState]);
       setLinksState({ title: "", link: "" });
+      setErrorState((prev) => ({ ...prev, links: { title: false, link: false } }));
+    } else {
+      setTimeout(() => {
+        setErrorState((prev) => ({ ...prev, links: { title: false, link: false } }));
+      }, 7000);
     }
   };
 
   const handleHobbies = () => {
+    // Error state check
+    !hobbiesState
+      ? setErrorState((prev) => ({ ...prev, hobbies: true }))
+      : errorState.hobbies
+      ? setErrorState((prev) => ({ ...prev, hobbies: false }))
+      : "";
+
+    // update competences
+
     if (hobbiesState) {
       setHobbies((prev) => [...prev, hobbiesState]);
       setHobbiesState("");
+      setErrorState((prev) => ({ ...prev, hobbies: false }));
+    } else {
+      setTimeout(() => setErrorState((prev) => ({ ...prev, hobbies: false })), 7000);
     }
   };
 
   const handlePersonalized = () => {
+    // Error state check
+    !personalizedState.sectionTitle
+      ? setErrorState((prev) => ({ ...prev, personalized: true }))
+      : errorState.personalized
+      ? setErrorState((prev) => ({ ...prev, personalized: false }))
+      : "";
+
+    // update state
     if (personalizedState.sectionTitle) {
       setPersonalized((prev) => [...prev, personalizedState]);
       setPersonalizedState({
         sectionTitle: "",
         content: [],
       });
+      setErrorState((prev) => ({ ...prev, personalized: false }));
+    } else {
+      setTimeout(() => setErrorState((prev) => ({ ...prev, personalized: false })), 7000);
     }
   };
 
   const handlePersonalizedState = () => {
+    // Error state check
+    !personalizedContentState.title
+      ? setErrorState((prev) => ({ ...prev, personalizedContent: true }))
+      : errorState.personalizedContent
+      ? setErrorState((prev) => ({ ...prev, personalizedContent: false }))
+      : "";
+
+    // update state
     if (personalizedContentState.title) {
       setPersonalizedState((prev) => ({ ...prev, content: [...personalizedState.content, personalizedContentState] }));
       setPersonalizedContentState({ title: "", link: "", description: [], start: "", end: "", untilNow: false });
+      setErrorState((prev) => ({ ...prev, personalizedContent: false }));
+    } else {
+      setTimeout(() => setErrorState((prev) => ({ ...prev, personalizedContent: false })), 7000);
     }
   };
 
@@ -272,12 +354,6 @@ const FillForm_Preview = () => {
       setPersonalizedContentState((prev) => ({ ...prev, description: [...personalizedContentState.description, personalizedDescState] }));
       setPersonalizedDescState("");
     }
-  };
-
-  const handleSubmit = () => {
-    const cvData = { generalInfo, contact, education, experience, competences, projects, volunteering, links, hobbies, personalized };
-
-    console.log(cvData);
   };
 
   const handleDelete = (
@@ -313,12 +389,11 @@ const FillForm_Preview = () => {
 
   return (
     <div className="fillform_preview">
-      
       <section className="fill-form section-wide">
         <form>
           {/* PERSONAL INFO */}
           <label>
-            Nume complet*
+            Nume complet {!generalInfo.name && "*"}
             <input
               type="text"
               placeholder="Popescu Ion"
@@ -330,11 +405,12 @@ const FillForm_Preview = () => {
 
           {/* INTRODUCTION */}
           <label>
-            <span className="label-title">Introducere*</span>
+            <span className="label-title">Introducere {!generalInfo.description && "*"}</span>
 
             <textarea
               cols={30}
               rows={10}
+              placeholder="Adauga ceva despre tine..."
               value={generalInfo.description}
               onChange={(e) => setGeneralInfo((prev) => ({ ...prev, description: e.target.value }))}
               required
@@ -346,17 +422,18 @@ const FillForm_Preview = () => {
             <legend>Contact</legend>
 
             <label>
-              Telefon
+              Telefon {!contact.phone && "*"}
               <input
                 type="phone"
                 placeholder="0753 000 000"
                 value={contact.phone}
                 onChange={(e) => setContact((prev) => ({ ...prev, phone: e.target.value }))}
+                required
               />
             </label>
 
             <label>
-              Email*
+              Email {!contact.email && "*"}
               <input
                 type="email"
                 placeholder="contact@gmail.com"
@@ -367,19 +444,20 @@ const FillForm_Preview = () => {
             </label>
 
             <label>
-              Adresa
+              Adresa {!contact.address && "*"}
               <input
                 type="text"
                 placeholder="Bucuresti, Romania"
                 value={contact.address}
                 onChange={(e) => setContact((prev) => ({ ...prev, address: e.target.value }))}
+                required
               />
             </label>
           </fieldset>
 
           {/* EDUCATION */}
           <fieldset>
-            <legend>Educatie*</legend>
+            <legend>Educatie {education.length <= 0 && "*"}</legend>
 
             {education.length > 0 &&
               education.map((item) => (
@@ -396,35 +474,39 @@ const FillForm_Preview = () => {
               ))}
 
             <label>
-              Scoala
+              Scoala {education.length <= 0 && "*"}
               <input
+                className={errorState.education.school ? "error-input-border" : ""}
                 type="text"
-                placeholder="..."
+                placeholder="&#9998;"
                 value={educationState.school}
                 onChange={(e) => setEducationState((prev) => ({ ...prev, school: e.target.value }))}
               />
             </label>
 
             <label>
-              Specializarea
+              Specializarea {education.length <= 0 && "*"}
               <input
                 type="text"
-                placeholder="..."
+                className={errorState.education.specialization ? "error-input-border" : ""}
+                placeholder="&#9998;"
                 value={educationState.specialization}
                 onChange={(e) => setEducationState((prev) => ({ ...prev, specialization: e.target.value }))}
               />
             </label>
 
             <label>
-              Perioada
+              Perioada {education.length <= 0 && "*"}
               <div>
                 <input
                   type="date"
+                  className={errorState.education.start ? "error-input-border" : ""}
                   value={educationState.start}
                   onChange={(e) => setEducationState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                 />
                 <input
                   type="date"
+                  className={errorState.education.end ? "error-input-border" : ""}
                   value={educationState.end}
                   onChange={(e) => setEducationState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
                 />
@@ -434,8 +516,6 @@ const FillForm_Preview = () => {
             <label className="checkbox">
               <input
                 type="checkbox"
-                name=""
-                id=""
                 checked={educationState.untilNow}
                 onChange={() => setEducationState((prev) => ({ ...prev, untilNow: !educationState.untilNow }))}
               />
@@ -450,7 +530,7 @@ const FillForm_Preview = () => {
 
           {/* EXPERIENCE */}
           <fieldset>
-            <legend>Experienta</legend>
+            <legend>Experienta {experience.length <= 0 && "*"}</legend>
 
             {experience.length > 0 &&
               experience.map((item) => (
@@ -473,20 +553,22 @@ const FillForm_Preview = () => {
               ))}
 
             <label>
-              Functie
+              Functie {experience.length <= 0 && "*"}
               <input
                 type="text"
-                placeholder="..."
+                className={errorState.experience.position ? "error-input-border" : ""}
+                placeholder="&#9998;"
                 value={experienceState.position}
                 onChange={(e) => setExperienceState((prev) => ({ ...prev, position: e.target.value }))}
               />
             </label>
 
             <label>
-              Companie
+              Companie {experience.length <= 0 && "*"}
               <input
                 type="text"
-                placeholder="..."
+                className={errorState.experience.company ? "error-input-border" : ""}
+                placeholder="&#9998;"
                 value={experienceState.company}
                 onChange={(e) => setExperienceState((prev) => ({ ...prev, company: e.target.value }))}
               />
@@ -502,7 +584,7 @@ const FillForm_Preview = () => {
                 </ul>
               )}
               <div className="input-box">
-                <input type="text" placeholder="..." value={experienceDescState} onChange={(e) => setExperienceDescState(e.target.value)} />
+                <input type="text" placeholder="&#9998;" value={experienceDescState} onChange={(e) => setExperienceDescState(e.target.value)} />
 
                 <button type="button" className="btn-add2" onClick={handleExperienceDesc}>
                   <AddSvg color="#f5f5f5" />
@@ -511,15 +593,17 @@ const FillForm_Preview = () => {
             </label>
 
             <label>
-              Perioada
+              Perioada {experience.length <= 0 && "*"}
               <div>
                 <input
                   type="date"
+                  className={errorState.experience.start ? "error-input-border" : ""}
                   value={experienceState.start}
                   onChange={(e) => setExperienceState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                 />
                 <input
                   type="date"
+                  className={errorState.experience.end ? "error-input-border" : ""}
                   value={experienceState.end}
                   onChange={(e) => setExperienceState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
                 />
@@ -545,7 +629,7 @@ const FillForm_Preview = () => {
 
           {/* COMPETENCES */}
           <label className="simple-strings">
-            <span className="label-title">Competente</span>
+            <span className="label-title">Competente {competences.length <= 0 && "*"}</span>
 
             {competences.length > 0 && (
               <ul>
@@ -565,9 +649,15 @@ const FillForm_Preview = () => {
                 ))}
               </ul>
             )}
-            <input type="text" placeholder="..." value={competencesState} onChange={(e) => setCompetencesState(e.target.value)} />
+            <input
+              type="text"
+              className={errorState.competences ? "error-input-border" : ""}
+              placeholder="&#9998;"
+              value={competencesState}
+              onChange={(e) => setCompetencesState(e.target.value)}
+            />
             <button type="button" className="btn-add" onClick={handleCompetences}>
-              Adauga competente <AddSvg />
+              Adauga competenta <AddSvg />
             </button>
           </label>
 
@@ -594,7 +684,8 @@ const FillForm_Preview = () => {
                 Titlu
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.projects.title ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={projectsState.title}
                   onChange={(e) => setProjectsState((prev) => ({ ...prev, title: e.target.value }))}
                 />
@@ -604,7 +695,8 @@ const FillForm_Preview = () => {
                 Link (URL)
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.projects.link ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={projectsState.link}
                   onChange={(e) => setProjectsState((prev) => ({ ...prev, link: e.target.value }))}
                 />
@@ -639,7 +731,8 @@ const FillForm_Preview = () => {
                 Rol
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.volunteering.role ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={volunteeringState.role}
                   onChange={(e) => setVolunteeringState((prev) => ({ ...prev, role: e.target.value }))}
                 />
@@ -649,7 +742,8 @@ const FillForm_Preview = () => {
                 Organizatie
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.volunteering.organisation ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={volunteeringState.organisation}
                   onChange={(e) => setVolunteeringState((prev) => ({ ...prev, organisation: e.target.value }))}
                 />
@@ -711,7 +805,8 @@ const FillForm_Preview = () => {
                 Titlu
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.links.title ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={linksState.title}
                   onChange={(e) => setLinksState((prev) => ({ ...prev, title: e.target.value }))}
                 />
@@ -721,7 +816,8 @@ const FillForm_Preview = () => {
                 Link (URL)
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.links.link ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={linksState.link}
                   onChange={(e) => setLinksState((prev) => ({ ...prev, link: e.target.value }))}
                 />
@@ -755,7 +851,13 @@ const FillForm_Preview = () => {
                   ))}
                 </ul>
               )}
-              <input type="text" placeholder="..." value={hobbiesState} onChange={(e) => setHobbiesState(e.target.value)} />
+              <input
+                type="text"
+                className={errorState.hobbies ? "error-input-border" : ""}
+                placeholder="&#9998;"
+                value={hobbiesState}
+                onChange={(e) => setHobbiesState(e.target.value)}
+              />
               <button type="button" className="btn-add" onClick={handleHobbies}>
                 Adauga hobbi <AddSvg />
               </button>
@@ -798,7 +900,8 @@ const FillForm_Preview = () => {
                 Titlu sectiune
                 <input
                   type="text"
-                  placeholder="..."
+                  className={errorState.personalized ? "error-input-border" : ""}
+                  placeholder="&#9998;"
                   value={personalizedState.sectionTitle}
                   onChange={(e) => setPersonalizedState((prev) => ({ ...prev, sectionTitle: e.target.value }))}
                 />
@@ -826,7 +929,8 @@ const FillForm_Preview = () => {
                   Titlu
                   <input
                     type="text"
-                    placeholder="..."
+                    className={errorState.personalizedContent ? "error-input-border" : ""}
+                    placeholder="&#9998;"
                     value={personalizedContentState.title}
                     onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, title: e.target.value }))}
                   />
@@ -836,7 +940,7 @@ const FillForm_Preview = () => {
                   Link (URL)
                   <input
                     type="text"
-                    placeholder="..."
+                    placeholder="&#9998;"
                     value={personalizedContentState.link}
                     onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, link: e.target.value }))}
                   />
@@ -852,7 +956,12 @@ const FillForm_Preview = () => {
                     </ul>
                   )}
                   <div className="input-box">
-                    <input type="text" placeholder="..." value={personalizedDescState} onChange={(e) => setPersonalizedDescState(e.target.value)} />
+                    <input
+                      type="text"
+                      placeholder="&#9998;"
+                      value={personalizedDescState}
+                      onChange={(e) => setPersonalizedDescState(e.target.value)}
+                    />
 
                     <button type="button" className="btn-add2" onClick={handlePersonalizedDesc}>
                       <AddSvg color="#f5f5f5" />
@@ -900,10 +1009,6 @@ const FillForm_Preview = () => {
           )}
 
           <OtherCategories otherCategories={otherCategories} handleOtherCategories={handleOtherCategories} />
-
-          <button type="button" className="btn-primary" onClick={handleSubmit}>
-            Descarca CV
-          </button>
         </form>
       </section>
 

@@ -56,3 +56,15 @@ export type PreviewCvPropType = {
     personalized: PersonalizedStateType[];
   };
 };
+
+export type ErrorStateType = {
+  education: { school: boolean; specialization: boolean; start: boolean; end: boolean };
+  experience: { position: boolean; company: boolean; start: boolean; end: boolean };
+  competences: boolean;
+  projects: { title: boolean; link: boolean };
+  volunteering: { role: boolean; organisation: boolean };
+  links: { title: boolean; link: boolean };
+  hobbies: boolean;
+  personalized: boolean;
+  personalizedContent: boolean;
+};

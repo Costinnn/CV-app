@@ -291,7 +291,15 @@
 
       .btn-primary {
         margin: 50px auto 0 auto;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 18px !important;
+      }
+
+      .error-input-border {
+        border-color: red !important;
       }
     }
   }
