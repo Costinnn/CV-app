@@ -20,54 +20,54 @@ const WhatIsCv = () => {
       <div className="content">
         <h2>Ce este un CV?</h2>
         <p>
-          CV-ul este un document de prezentare a competentelor profesionale, abilitatilor, calificarilor, precum si a experientei acumulate. Un CV
-          bine redactat si structurat poate face diferenta intre a fi chemat la un interviu si a fi ignorat de angajatori. Este important sa fie clar,
-          concis si relevant pentru jobul la care aplici.
+          CV-ul este un document de prezentare a competențelor profesionale, abilităților, calificărilor, precum și a experienței acumulate. Un CV
+          bine redactat și structurat poate face diferența între a fi chemat la un interviu și a fi ignorat de angajatori. Este important să fie clar,
+          concis și relevant pentru jobul la care aplici.
         </p>
 
-        <h2>Ce trebuie sa contina un CV?</h2>
+        <h2>Ce trebuie să contină un CV?</h2>
 
         <div className="boxes">
           <div className="box">
             <Image src={personalImg} alt="informatii personale in CV" width={70} height={70} />
-            <h3>Informatii personale</h3>
-            <p>Asigura-te ca incluzi numele complet, datele de contact (numar de telefon, adresa de email) si, optional, adresa domiciliului.</p>
+            <h3>Informații personale</h3>
+            <p>Asigura-te ca incluzi numele complet, datele de contact (numar de telefon, adresă de email) și, optional, adresa domiciliului.</p>
           </div>
 
           <div className="box">
             <Image src={educationImg} alt="educatie in CV" width={70} height={70} />
             <h3>Studii</h3>
             <p>
-              Mentioneaza cele mai relevante studii, incepe cu cea mai recenta si include datele de inceput si finalizare, institutia si eventuale
-              specializari sau realizari notabile.
+              Menționeaza cele mai relevante studii, începe cu cea mai recenta și include datele de început și finalizare, instituția și eventuale
+              specializări sau realizări notabile.
             </p>
           </div>
 
           <div className="box">
             <Image src={experienceImg} alt="educatie in CV" width={70} height={70} />
-            <h3>Experienta profesionala</h3>
+            <h3>Experiența profesională</h3>
             <p>
-              Detaliaza-ti experienta profesionala, incepand cu cel mai recent loc de munca. Include numele companiei, perioada de angajare, pozitia
-              ocupata si responsabilitatile tale principale.
+              Detaliaza-ți experiența profesională, începand cu cel mai recent loc de munca. Include numele companiei, perioada de angajare, poziția
+              ocupată și responsabilitățile tale principale.
             </p>
           </div>
 
           <div className="box">
             <Image src={competenciesImg} alt="educatie in CV" width={70} height={70} />
-            <h3>Competente</h3>
-            <p>Listeaza abilitatile relevante pentru jobul dorit, cum ar fi competente tehnice, lingvistice sau de gestionare a proiectelor.</p>
+            <h3>Competențe</h3>
+            <p>Listează abilitățile relevante pentru jobul dorit, cum ar fi competențe tehnice, lingvistice sau de gestionare a proiectelor.</p>
           </div>
 
           <div className="box">
             <Image src={certificationImg} alt="educatie in CV" width={70} height={70} />
-            <h3>Cursuri si certificari</h3>
-            <p>Daca ai urmat cursuri suplimentare sau ai obtinut certificari relevante, mentioneaza-le.</p>
+            <h3>Cursuri și certificări</h3>
+            <p>Dacă ai urmat cursuri suplimentare sau ai obținut certificări relevante, menționeaza-le.</p>
           </div>
 
           <div className="box">
             <Image src={projectsImg} alt="educatie in CV" width={70} height={70} />
             <h3>Proiecte personale</h3>
-            <p>Daca ai lucrat la proiecte importante sau ai realizat obiective notabile, detaliaza-le.</p>
+            <p>Dacă ai lucrat la proiecte importante sau ai realizat obiective notabile, detaliaza-le.</p>
           </div>
         </div>
       </div>

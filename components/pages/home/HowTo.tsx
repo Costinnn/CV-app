@@ -12,26 +12,26 @@ const HowTo = () => {
       <ul>
         <h2>Cum creezi un CV?</h2>
         <li>
-          <Link href="/">
+          <Link href="/modele-cv">
             <span>1</span> Alege un model
           </Link>
         </li>
 
         <li>
           <Link href="/">
-            <span>2</span> Creeaza un cont (optional)
+            <span>2</span> Creeaza un cont (opțional)
           </Link>
         </li>
 
         <li>
-          <Link href="/">
-            <span>3</span> Completeaza datele tale
+          <Link href="/completare-cv">
+            <span>3</span> Completează datele tale
           </Link>
         </li>
 
         <li>
-          <Link href="/">
-            <span>4</span> Descarca CV-ul si aplica
+          <Link href="/completare-cv">
+            <span>4</span> Descarcă CV-ul și aplică
           </Link>
         </li>
       </ul>

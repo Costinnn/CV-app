@@ -19,13 +19,13 @@ const Herosection = () => {
         Creare CV online <span className="text-gradient-primary">gratis</span>
       </h1>
       <p>
-        Descopera cele mai bune modele de curriculum vitae gratuite, perfecte pentru a-ti evidentia abilitatile si experienta profesionala. Fie ca
-        esti la inceput de cariera sau un profesionist cu experienta, oferim sabloane de CV-uri care te vor ajuta sa impresionezi angajatorii si sa
-        obtii jobul dorit.
+        Descoperă cele mai bune modele de curriculum vitae gratuite, perfecte pentru a-ți evidenția abilitățile și experiența profesională. Fie că
+        ești la început de carieră sau un profesionist cu experiență, oferim șabloane de CV-uri care te vor ajuta să impresionezi angajatorii și să
+        obții jobul dorit.
       </p>
 
       <div className="call-to-action">
-        <Link href={"/"} className="btn-primary2">
+        <Link href="/modele-cv" className="btn-primary2">
           Vezi modele <ArrowUpRightSvg size="13" color="#f5f5f5" />
         </Link>
         <div>
