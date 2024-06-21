@@ -5,14 +5,15 @@ export type SvgType = {
   color?: string;
 };
 
+// DATA
 export type CvTemplateType = {
   img: StaticImageData;
   templateName: string;
   type: string;
 };
+// END DATA
 
-export type OtherCategoriesFormType = { projects: boolean; volunteering: boolean; links: boolean; hobbies: boolean; personalized: boolean };
-
+// FILL FORM
 export type GeneralInfoType = { name: string; description: string };
 
 export type ContactType = { phone: string; email: string; address: string };
@@ -42,6 +43,21 @@ export type PersonalizedStateType = {
   content: PersonalizedContentType[];
 };
 
+export type OtherCategoriesFormType = { projects: boolean; volunteering: boolean; links: boolean; hobbies: boolean; personalized: boolean };
+
+export type ErrorStateType = {
+  education: { school: boolean; specialization: boolean; start: boolean; end: boolean };
+  experience: { position: boolean; company: boolean; start: boolean; end: boolean };
+  competences: boolean;
+  projects: { title: boolean; link: boolean };
+  volunteering: { role: boolean; organisation: boolean };
+  links: { title: boolean; link: boolean };
+  hobbies: boolean;
+  personalized: boolean;
+  personalizedContent: boolean;
+};
+// END FILL FORM
+
 export type PreviewCvPropType = {
   inputData: {
     generalInfo: GeneralInfoType;
@@ -55,16 +71,4 @@ export type PreviewCvPropType = {
     hobbies: string[];
     personalized: PersonalizedStateType[];
   };
-};
-
-export type ErrorStateType = {
-  education: { school: boolean; specialization: boolean; start: boolean; end: boolean };
-  experience: { position: boolean; company: boolean; start: boolean; end: boolean };
-  competences: boolean;
-  projects: { title: boolean; link: boolean };
-  volunteering: { role: boolean; organisation: boolean };
-  links: { title: boolean; link: boolean };
-  hobbies: boolean;
-  personalized: boolean;
-  personalizedContent: boolean;
 };

@@ -1,0 +1,103 @@
+.blog-page {
+  margin: 100px 0;
+  padding: 20px;
+
+  article {
+    > h1 {
+      text-align: center;
+      font-size: 35px;
+    }
+
+    time {
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    h2 {
+      font-size: 25px;
+      margin-top: 50px;
+    }
+
+    h3 {
+      margin-top: 35px;
+    }
+
+    .links,
+    p {
+      margin-top: 20px;
+    }
+
+    p {
+      text-align: justify;
+      color: var(--gray2);
+    }
+
+    .links {
+      li {
+        a {
+          padding: 5px 0;
+          text-decoration: underline;
+          color: var(--primary);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
+
+    #contact,
+    #descriere-profesionala,
+    #educatie,
+    #experienta-profesionala,
+    #abilitati-competente,
+    #realizari-profesionale,
+    #sectiuni-aditionale {
+      scroll-margin-top: 100px;
+    }
+
+    .simple-link {
+      display: block;
+      text-decoration: underline;
+      color: var(--secondary);
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 50px auto 0 auto;
+      max-width: 400px;
+    }
+
+    @media screen and (min-width: 700px) {
+      padding: 20px 5vw;
+
+      h1 {
+        font-size: 5vw;
+      }
+
+      h2 {
+        font-size: 35px;
+      }
+
+      h3 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      .links {
+        li {
+          a {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
