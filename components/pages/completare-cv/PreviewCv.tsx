@@ -68,9 +68,7 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
         {selectedTemplate ? (
           //SELECTED TEMPLATE
           <div className="cv-template-preview">
-            <div className="pdf-display">
-              <Simple inputData={inputData} />
-            </div>
+            <div className="pdf-display">{selectedTemplate === "simple" && <Simple inputData={inputData} />}</div>
 
             <div className="pdf-actions">
               <button type="button" className="btn-primary" onClick={openPdf}>

@@ -153,6 +153,7 @@
           margin: 20px 0 40px -10px;
 
           ul {
+            margin-top: 20px;
             li {
               font-size: 14px;
             }

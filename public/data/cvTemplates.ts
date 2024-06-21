@@ -1,9 +1,4 @@
-import templateImg from "@/public/images/templates/template1.jpg";
+import simpleTemplateImg from "@/public/images/templates/simple.jpg";
 import { CvTemplateType } from "@/types/globalTypes";
 
-export const CV_TEMPLATES: CvTemplateType[] = [
-  { img: templateImg, templateName: "taylor", type: "simple" },
-  { img: templateImg, templateName: "taylor2", type: "simple" },
-  { img: templateImg, templateName: "taylor3", type: "modern" },
-  { img: templateImg, templateName: "taylor4", type: "profesional" },
-];
+export const CV_TEMPLATES: CvTemplateType[] = [{ img: simpleTemplateImg, templateName: "simple", type: "simple" }];

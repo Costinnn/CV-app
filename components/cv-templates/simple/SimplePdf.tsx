@@ -48,8 +48,8 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
             {
               text: ` - ${item.school}, `,
             },
-            { text: `${item.start} - ` },
-            { text: `${item.untilNow ? "Prezent" : item.end}` },
+            { text: `${item.start.replace("-", ".")} - ` },
+            { text: `${item.untilNow ? "Prezent" : item.end.replace("-", ".")}` },
           ],
           margin: [0, 5, 0, 0],
         });
@@ -82,8 +82,8 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
                 {
                   text: ` - ${item.company}, `,
                 },
-                { text: `${item.start} - ` },
-                { text: `${item.untilNow ? "Prezent" : item.end}` },
+                { text: `${item.start.replace("-", ".")} - ` },
+                { text: `${item.untilNow ? "Prezent" : item.end.replace("-", ".")}`, margin: [5, 0, 0, 0], fontSize: 13 },
               ],
               margin: [0, 5, 0, 0],
             },
@@ -107,8 +107,8 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
             {
               text: ` - ${item.organisation}, `,
             },
-            { text: `${item.start} - ` },
-            { text: `${item.untilNow ? "Prezent" : item.end}` },
+            { text: `${item.start.replace("-", ".")} - ` },
+            { text: `${item.untilNow ? "Prezent" : item.end.replace("-", ".")}` },
           ],
           margin: [0, 5, 0, 0],
         });
@@ -149,14 +149,13 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
                 text: [
                   { text: `${pContentItem.title}, `, bold: true },
 
-                  { text: `${pContentItem.start} - ` },
-                  { text: `${pContentItem.untilNow ? "Prezent" : pContentItem.end}` },
+                  { text: `${pContentItem.start.replace("-", ".")} ${pContentItem.start || pContentItem.end ? " - " : ""} ` },
+                  { text: `${pContentItem.untilNow ? "Prezent" : pContentItem.end.replace("-", ".")}` },
                 ],
                 margin: [0, 5, 0, 0],
               },
               { stack: [...descFormattedData], margin: [20, 0, 0, 0] },
             ],
-            style: `${idx == pItem.content.length - 1 ? "textStack" : ""}`,
           });
         }
 

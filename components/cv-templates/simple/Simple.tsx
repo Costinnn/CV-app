@@ -10,46 +10,47 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       <h2>{inputData.generalInfo.name}</h2>
 
       {/* CONTACT */}
-      {inputData.contact.address ||
-        inputData.contact.email ||
-        (inputData.contact.phone && (
-          <div>
-            <h3>Contact</h3>
+      {(inputData.contact.address || inputData.contact.email || inputData.contact.phone) && (
+        <div>
+          <h3>Contact</h3>
 
-            <p>
-              {inputData.contact.email && (
-                <>
-                  <b>Email: </b>
-                  <a href={`mailto:${inputData.contact.email}`} className="link">
-                    {inputData.contact.email}
+          <p>
+            {inputData.contact.email && (
+              <>
+                <b>Email: </b>
+                <a href={`mailto:${inputData.contact.email}`} className="link">
+                  {inputData.contact.email}
+                </a>
+                <span className="separator"> | </span>
+              </>
+            )}
+
+            {inputData.contact.phone && (
+              <>
+                <b>Phone:</b> {inputData.contact.phone}
+                <span className="separator"> | </span>
+              </>
+            )}
+
+            {inputData.contact.address && (
+              <>
+                <b>Address:</b> {inputData.contact.address}
+                <span className="separator"> | </span>
+              </>
+            )}
+
+            {inputData.links.length > 0 &&
+              inputData.links.map((item) => (
+                <span key={item.title}>
+                  <a href={item.link} target="_blank" className="link">
+                    {item.title}
                   </a>
-                </>
-              )}
-              <span className="separator"> | </span>
-              {inputData.contact.phone && (
-                <>
-                  <b>Phone:</b> {inputData.contact.phone}
-                </>
-              )}
-              <span className="separator"> | </span>
-              {inputData.contact.address && (
-                <>
-                  <b>Address:</b> {inputData.contact.address}
-                </>
-              )}
-              <span className="separator"> | </span>
-              {inputData.links.length > 0 &&
-                inputData.links.map((item) => (
-                  <span key={item.title}>
-                    <a href={item.link} target="_blank" className="link">
-                      {item.title}
-                    </a>
-                    <span className="separator"> | </span>
-                  </span>
-                ))}
-            </p>
-          </div>
-        ))}
+                  <span className="separator"> | </span>
+                </span>
+              ))}
+          </p>
+        </div>
+      )}
 
       {/* ABOUT */}
       {inputData.generalInfo.description && (
@@ -95,7 +96,8 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
           <ul>
             {inputData.education.map((item) => (
               <li key={item.specialization}>
-                <b>{item.specialization}</b> - {item.school}, {item.start} - {item.untilNow ? "Prezent" : item.end}
+                <b>{item.specialization}</b> - {item.school}, {item.start.replace("-", ".")} -{" "}
+                {item.untilNow ? "Prezent" : item.end.replace("-", ".")}
               </li>
             ))}
           </ul>
@@ -109,7 +111,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
           <ul>
             {inputData.experience.map((item) => (
               <li key={item.position + item.company}>
-                <b>{item.position}</b> - {item.company}, {item.start} - {item.untilNow ? "Prezent" : item.end}
+                <b>{item.position}</b> - {item.company}, {item.start.replace("-", ".")} - {item.untilNow ? "Prezent" : item.end.replace("-", ".")}
                 <div>{item.description.length > 0 && item.description.map((desc) => <p key={desc}>- {desc}</p>)}</div>
               </li>
             ))}
@@ -125,7 +127,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
             {inputData.volunteering.map((item) => (
               <div key={item.role + item.organisation}>
                 <li>
-                  <b>{item.role}</b> - {item.organisation}, {item.start} - {item.untilNow ? "Prezent" : item.end}
+                  <b>{item.role}</b> - {item.organisation}, {item.start.replace("-", ".")} - {item.untilNow ? "Prezent" : item.end.replace("-", ".")}
                 </li>
               </div>
             ))}
@@ -155,7 +157,9 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
             <ul>
               {item.content.map((cItem) => (
                 <li key={cItem.title + cItem.link}>
-                  <b>{cItem.title}</b> , {cItem.start} - {cItem.untilNow ? "Prezent" : cItem.end}
+                  <b>{cItem.title}</b>
+                  {(cItem.start || cItem.end) && ", "} {cItem.start.replace("-", ".")} {(cItem.start || cItem.end) && "-"}{" "}
+                  {cItem.untilNow ? "Prezent" : cItem.end.replace("-", ".")}
                   <div>{cItem.description.length > 0 && cItem.description.map((desc) => <p key={desc}>- {desc}</p>)}</div>
                 </li>
               ))}

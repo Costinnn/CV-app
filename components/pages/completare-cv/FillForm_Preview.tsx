@@ -172,9 +172,13 @@ const FillForm_Preview = () => {
 
     // update experience data
     if (experienceState.position && experienceState.company && experienceState.start && (experienceState.end || experienceState.untilNow)) {
-      setExperience((prev) => [...prev, experienceState]);
+      setExperience((prev) => [
+        ...prev,
+        experienceDescState ? { ...experienceState, description: [...experienceState.description, experienceDescState] } : experienceState,
+      ]);
       setExperienceState({ position: "", company: "", description: [], start: "", end: "", untilNow: false });
       setErrorState((prev) => ({ ...prev, experience: { position: false, company: false, start: false, end: false } }));
+      setExperienceDescState("");
     } else {
       setTimeout(() => {
         setErrorState((prev) => ({ ...prev, experience: { position: false, company: false, start: false, end: false } }));
@@ -320,11 +324,31 @@ const FillForm_Preview = () => {
 
     // update state
     if (personalizedState.sectionTitle) {
-      setPersonalized((prev) => [...prev, personalizedState]);
+      // check for data left in inputs
+      if (personalizedContentState.title) {
+        setPersonalized((prev) => [
+          ...prev,
+          {
+            ...personalizedState,
+            content: [
+              ...personalizedState.content,
+              personalizedDescState
+                ? { ...personalizedContentState, description: [...personalizedContentState.description, personalizedDescState] }
+                : personalizedContentState,
+            ],
+          },
+        ]);
+      } else {
+        setPersonalized((prev) => [...prev, personalizedState]);
+      }
+
+      // clear inputs
       setPersonalizedState({
         sectionTitle: "",
         content: [],
       });
+      setPersonalizedContentState({ title: "", link: "", description: [], start: "", end: "", untilNow: false });
+      setPersonalizedDescState("");
       setErrorState((prev) => ({ ...prev, personalized: false }));
     } else {
       setTimeout(() => setErrorState((prev) => ({ ...prev, personalized: false })), 7000);
@@ -341,9 +365,20 @@ const FillForm_Preview = () => {
 
     // update state
     if (personalizedContentState.title) {
-      setPersonalizedState((prev) => ({ ...prev, content: [...personalizedState.content, personalizedContentState] }));
+      setPersonalizedState((prev) => ({
+        ...prev,
+        content: [
+          ...prev.content,
+          personalizedDescState
+            ? { ...personalizedContentState, description: [...personalizedContentState.description, personalizedDescState] }
+            : personalizedContentState,
+        ],
+      }));
+
+      // clear inputs
       setPersonalizedContentState({ title: "", link: "", description: [], start: "", end: "", untilNow: false });
       setErrorState((prev) => ({ ...prev, personalizedContent: false }));
+      setPersonalizedDescState("");
     } else {
       setTimeout(() => setErrorState((prev) => ({ ...prev, personalizedContent: false })), 7000);
     }
@@ -499,13 +534,13 @@ const FillForm_Preview = () => {
               Perioada {education.length <= 0 && "*"}
               <div>
                 <input
-                  type="date"
+                  type="month"
                   className={errorState.education.start ? "error-input-border" : ""}
                   value={educationState.start}
                   onChange={(e) => setEducationState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                 />
                 <input
-                  type="date"
+                  type="month"
                   className={errorState.education.end ? "error-input-border" : ""}
                   value={educationState.end}
                   onChange={(e) => setEducationState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
@@ -596,13 +631,13 @@ const FillForm_Preview = () => {
               Perioada {experience.length <= 0 && "*"}
               <div>
                 <input
-                  type="date"
+                  type="month"
                   className={errorState.experience.start ? "error-input-border" : ""}
                   value={experienceState.start}
                   onChange={(e) => setExperienceState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                 />
                 <input
-                  type="date"
+                  type="month"
                   className={errorState.experience.end ? "error-input-border" : ""}
                   value={experienceState.end}
                   onChange={(e) => setExperienceState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
@@ -753,12 +788,12 @@ const FillForm_Preview = () => {
                 Perioada
                 <div>
                   <input
-                    type="date"
+                    type="month"
                     value={educationState.start}
                     onChange={(e) => setEducationState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                   />
                   <input
-                    type="date"
+                    type="month"
                     value={educationState.end}
                     onChange={(e) => setEducationState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
                   />
@@ -879,7 +914,8 @@ const FillForm_Preview = () => {
                         <div key={cItem.title} style={{ marginTop: "20px" }}>
                           <li>{cItem.title}</li>
                           <li>
-                            {cItem.start} - {cItem.untilNow ? "Prezent" : cItem.end}
+                            {cItem.start.replace("-", ".")} {(cItem.start || cItem.end || cItem.untilNow) && "-"}{" "}
+                            {cItem.untilNow ? "Prezent" : cItem.end.replace("-", ".")}
                           </li>
                           {cItem.description.length > 0 &&
                             cItem.description.map((desc) => (
@@ -914,7 +950,8 @@ const FillForm_Preview = () => {
                     <ul key={item.title + item.link}>
                       <li>{item.title}</li>
                       <li>
-                        {item.start} - {item.untilNow ? "Prezent" : item.end}
+                        {item.start.replace("-", ".")} {(item.start || item.end || item.untilNow) && "-"}{" "}
+                        {item.untilNow ? "Prezent" : item.end.replace("-", ".")}
                       </li>
                       {item.description.length > 0 &&
                         item.description.map((desc) => (
@@ -973,12 +1010,12 @@ const FillForm_Preview = () => {
                   Perioada
                   <div>
                     <input
-                      type="date"
+                      type="month"
                       value={personalizedContentState.start}
                       onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                     />
                     <input
-                      type="date"
+                      type="month"
                       value={personalizedContentState.end}
                       onChange={(e) => setPersonalizedContentState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
                     />
