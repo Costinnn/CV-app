@@ -29,7 +29,7 @@ const page = () => {
                 <p>{item.text} ...</p>
 
                 <span className="cta">
-                  Citeste mai mult <ArrowUpRightSvg color="#969799" size="10" />
+                  Citește mai mult <ArrowUpRightSvg color="#969799" size="10" />
                 </span>
               </div>
             </Link>

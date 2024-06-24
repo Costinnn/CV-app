@@ -492,7 +492,7 @@ const FillForm_Preview = () => {
 
           {/* EDUCATION */}
           <fieldset>
-            <legend>Educatie {education.length <= 0 && "*"}</legend>
+            <legend>Educație {education.length <= 0 && "*"}</legend>
 
             {education.length > 0 &&
               education.map((item) => (
@@ -509,7 +509,7 @@ const FillForm_Preview = () => {
               ))}
 
             <label>
-              Scoala {education.length <= 0 && "*"}
+              Școala {education.length <= 0 && "*"}
               <input
                 className={errorState.education.school ? "error-input-border" : ""}
                 type="text"
@@ -555,17 +555,17 @@ const FillForm_Preview = () => {
                 onChange={() => setEducationState((prev) => ({ ...prev, untilNow: !educationState.untilNow }))}
               />
               <span className="checkmark"></span>
-              Pana in prezent
+              Până în prezent
             </label>
 
             <button type="button" className="btn-add" onClick={handleEducation}>
-              Adauga educatie <AddSvg />
+              Adaugă educație <AddSvg />
             </button>
           </fieldset>
 
           {/* EXPERIENCE */}
           <fieldset>
-            <legend>Experienta {experience.length <= 0 && "*"}</legend>
+            <legend>Experiență {experience.length <= 0 && "*"}</legend>
 
             {experience.length > 0 &&
               experience.map((item) => (
@@ -588,7 +588,7 @@ const FillForm_Preview = () => {
               ))}
 
             <label>
-              Functie {experience.length <= 0 && "*"}
+              Funcție {experience.length <= 0 && "*"}
               <input
                 type="text"
                 className={errorState.experience.position ? "error-input-border" : ""}
@@ -654,7 +654,7 @@ const FillForm_Preview = () => {
                 onChange={() => setExperienceState((prev) => ({ ...prev, untilNow: !experienceState.untilNow }))}
               />
               <span className="checkmark"></span>
-              Pana in prezent
+              Până în prezent
             </label>
 
             <button type="button" className="btn-add" onClick={handleExperience}>
@@ -664,7 +664,7 @@ const FillForm_Preview = () => {
 
           {/* COMPETENCES */}
           <label className="simple-strings">
-            <span className="label-title">Competente {competences.length <= 0 && "*"}</span>
+            <span className="label-title">Competențe {competences.length <= 0 && "*"}</span>
 
             {competences.length > 0 && (
               <ul>
@@ -692,7 +692,7 @@ const FillForm_Preview = () => {
               onChange={(e) => setCompetencesState(e.target.value)}
             />
             <button type="button" className="btn-add" onClick={handleCompetences}>
-              Adauga competenta <AddSvg />
+              Adaugă competență <AddSvg />
             </button>
           </label>
 
@@ -738,7 +738,7 @@ const FillForm_Preview = () => {
               </label>
 
               <button type="button" className="btn-add" onClick={handleProjects}>
-                Adauga proiect <AddSvg />
+                Adaugă proiect <AddSvg />
               </button>
             </fieldset>
           )}
@@ -774,7 +774,7 @@ const FillForm_Preview = () => {
               </label>
 
               <label>
-                Organizatie
+                Organizație
                 <input
                   type="text"
                   className={errorState.volunteering.organisation ? "error-input-border" : ""}
@@ -809,11 +809,11 @@ const FillForm_Preview = () => {
                   onChange={() => setVolunteeringState((prev) => ({ ...prev, untilNow: !volunteeringState.untilNow }))}
                 />
                 <span className="checkmark"></span>
-                Pana in prezent
+                Până în prezent
               </label>
 
               <button type="button" className="btn-add" onClick={handleVolunteering}>
-                Adauga voluntariat <AddSvg />
+                Adaugă voluntariat <AddSvg />
               </button>
             </fieldset>
           )}
@@ -859,7 +859,7 @@ const FillForm_Preview = () => {
               </label>
 
               <button type="button" className="btn-add" onClick={handleLinks}>
-                Adauga link <AddSvg />
+                Adaugă link <AddSvg />
               </button>
             </fieldset>
           )}
@@ -894,7 +894,7 @@ const FillForm_Preview = () => {
                 onChange={(e) => setHobbiesState(e.target.value)}
               />
               <button type="button" className="btn-add" onClick={handleHobbies}>
-                Adauga hobbi <AddSvg />
+                Adaugă hobbi <AddSvg />
               </button>
             </label>
           )}
@@ -902,7 +902,7 @@ const FillForm_Preview = () => {
           {/* PERSONALIZED */}
           {otherCategories.personalized && (
             <fieldset id="s-personalized">
-              <legend>Sectiune personalizata</legend>
+              <legend>Secțiune personalizată</legend>
 
               {/* display sections */}
               {personalized.length > 0 &&
@@ -1031,16 +1031,16 @@ const FillForm_Preview = () => {
                     onChange={() => setPersonalizedContentState((prev) => ({ ...prev, untilNow: !personalizedContentState.untilNow }))}
                   />
                   <span className="checkmark"></span>
-                  Pana in prezent
+                  Până în prezent
                 </label>
 
                 <button type="button" className="btn-add" onClick={handlePersonalizedState}>
-                  Adauga continut <AddSvg />
+                  Adauga conținut <AddSvg />
                 </button>
               </div>
 
               <button type="button" className="btn-primary2" onClick={handlePersonalized}>
-                Adauga sectiune
+                Adauga secțiune
               </button>
             </fieldset>
           )}

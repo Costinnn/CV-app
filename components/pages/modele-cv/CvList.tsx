@@ -65,7 +65,7 @@ const CvList = () => {
               <div className="text">
                 <h2>{item.templateName}</h2>
                 <span className="btn-primary2">
-                  Completeaza <ArrowUpRightSvg size="10" color="#f5f5f5" />
+                  Completează <ArrowUpRightSvg size="10" color="#f5f5f5" />
                 </span>
               </div>
             </Link>

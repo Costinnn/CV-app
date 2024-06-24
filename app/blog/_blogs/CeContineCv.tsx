@@ -20,7 +20,7 @@ export const metadata = {
 const CeContineCv = () => {
   return (
     <article>
-      <h1>Ce trebuie sa contina un CV?</h1>
+      <h1>Ce trebuie să conțină un CV?</h1>
       <time dateTime="20.06.2024">Publicat pe 20.06.2024</time>
       <p className="introduction">
         Dacă vrei să afli ce trebuie să conțină un CV și care este cel mai bun format CV, pentru un model de CV completat corect, trebuie să incluzi

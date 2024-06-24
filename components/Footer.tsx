@@ -12,8 +12,8 @@ const Footer = () => {
         <div>
           <h3>Sfaturi utile</h3>
 
-          <Link href="/blog/ce-trebuie-sa-contina-un-cv">Ce trebuie sa contina un CV?</Link>
-          <Link href="/blog/cum-sa-scrii-un-cv">Cum se completeaza un CV?</Link>
+          <Link href="/blog/ce-trebuie-sa-contina-un-cv">Ce trebuie să conțină un CV?</Link>
+          <Link href="/blog/cum-sa-scrii-un-cv">Cum se completează un CV?</Link>
           <Link href="/blog/ce-este-un-cv">Ce este un CV (curriculum vitae)?</Link>
         </div>
 
@@ -21,7 +21,7 @@ const Footer = () => {
           <h3>Link-uri</h3>
 
           <Link href="/modele-cv">Modele CV gratis</Link>
-          <Link href="/completare-cv">Completeaza CV-ul</Link>
+          <Link href="/completare-cv">Completează CV-ul</Link>
           <Link href="/blog">Blog</Link>
         </div>
       </div>

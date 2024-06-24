@@ -241,7 +241,7 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
       {
         table: {
           widths: [`${competencesDisplay.length > 0 ? "100%" : ""}`],
-          body: [[{ text: `${competencesDisplay.length > 0 ? "Competente" : ""}`, style: `${competencesDisplay.length > 0 ? "secondHeader" : ""}` }]],
+          body: [[{ text: `${competencesDisplay.length > 0 ? "Competențe" : ""}`, style: `${competencesDisplay.length > 0 ? "secondHeader" : ""}` }]],
         },
         layout: "noBorders",
       },
@@ -263,7 +263,7 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
       {
         table: {
           widths: [`${educationDisplay.length > 0 ? "100%" : ""}`],
-          body: [[{ text: `${educationDisplay.length > 0 ? "Educatie" : ""}`, style: `${educationDisplay.length > 0 ? "secondHeader" : ""}` }]],
+          body: [[{ text: `${educationDisplay.length > 0 ? "Educație" : ""}`, style: `${educationDisplay.length > 0 ? "secondHeader" : ""}` }]],
         },
         layout: "noBorders",
       },
@@ -273,7 +273,7 @@ const SimplePdf = ({ inputData }: PreviewCvPropType) => {
       {
         table: {
           widths: [`${experienceDisplay.length > 0 ? "100%" : ""}`],
-          body: [[{ text: `${experienceDisplay.length > 0 ? "Experienta" : ""}`, style: `${experienceDisplay.length > 0 ? "secondHeader" : ""}` }]],
+          body: [[{ text: `${experienceDisplay.length > 0 ? "Experiență" : ""}`, style: `${experienceDisplay.length > 0 ? "secondHeader" : ""}` }]],
         },
         layout: "noBorders",
       },

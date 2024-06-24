@@ -63,7 +63,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       {/* COMPETENCES */}
       {inputData.competences.length > 0 && (
         <div>
-          <h3>Competente</h3>
+          <h3>Competențe</h3>
           <p>
             {inputData.competences.map((item) => (
               <b key={item}>
@@ -92,7 +92,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       {/* EDUCATION */}
       {inputData.education.length > 0 && (
         <div>
-          <h3>Educatie</h3>
+          <h3>Educație</h3>
           <ul>
             {inputData.education.map((item) => (
               <li key={item.specialization}>
@@ -107,7 +107,7 @@ const Simple = ({ inputData }: PreviewCvPropType) => {
       {/* EXPERIENCE */}
       {inputData.experience.length > 0 && (
         <div>
-          <h3>Experienta</h3>
+          <h3>Experiență</h3>
           <ul>
             {inputData.experience.map((item) => (
               <li key={item.position + item.company}>

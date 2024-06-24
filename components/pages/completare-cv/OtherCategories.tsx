@@ -68,7 +68,7 @@ const OtherCategories = ({ handleOtherCategories, otherCategories }: formPropTyp
           <span id="svg">
             <CustomSvg color="#f5f5f5" />
           </span>
-          <span id="text">Personalizeaza</span>
+          <span id="text">Personalizează</span>
         </button>
       </div>
     </div>
