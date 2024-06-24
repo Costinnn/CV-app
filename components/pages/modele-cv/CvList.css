@@ -82,6 +82,25 @@
     }
   }
 
+  >.img-box {
+    position: relative;
+    height: 100px;
+    width: 100%;
+    margin-top: 50px;
+    padding-top: 100px;
+    text-align: center;
+
+    img {
+      object-fit: contain;
+      object-position: center;
+    }
+
+    @media screen and (min-width: 700px) {
+      height: 200px;
+      padding-top: 200px;
+    }
+  }
+
   /* DESKTOP SETTINGS */
   @media screen and (min-width: 700px) {
     padding: 0 5vw;

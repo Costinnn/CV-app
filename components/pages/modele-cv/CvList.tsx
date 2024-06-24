@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 
 import { CV_TEMPLATES } from "@/public/data/cvTemplates";
 import ArrowUpRightSvg from "@/public/SVG/ArrowUpRightSvg";
+import notFoundImg from "@/public/images/not-found.png";
 
 import { CvTemplateType } from "@/types/globalTypes";
 
@@ -54,24 +55,31 @@ const CvList = () => {
       </ul>
 
       {/* TEMPLATES PREVIEW */}
-      <ul className="templates">
-        {filteredCVTemplates.map((item) => (
-          <li key={item.templateName}>
-            <Link href={`/completare-cv?model-ales=${item.templateName}`}>
-              <div className="img-box">
-                <Image src={item.img} fill sizes="85vw" alt={item.templateName} />
-              </div>
+      {filteredCVTemplates.length > 0 ? (
+        <ul className="templates">
+          {filteredCVTemplates.map((item) => (
+            <li key={item.templateName}>
+              <Link href={`/completare-cv?model-ales=${item.templateName}`}>
+                <div className="img-box">
+                  <Image src={item.img} fill sizes="85vw" alt={item.templateName} />
+                </div>
 
-              <div className="text">
-                <h2>{item.templateName}</h2>
-                <span className="btn-primary2">
-                  Completează <ArrowUpRightSvg size="10" color="#f5f5f5" />
-                </span>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+                <div className="text">
+                  <h2>{item.templateName}</h2>
+                  <span className="btn-primary2">
+                    Completează <ArrowUpRightSvg size="10" color="#f5f5f5" />
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="img-box">
+          <Image src={notFoundImg} fill sizes="(min-width:700px) 200px, 100px" alt="" />
+          <p>Momentan nu există nici un model pentru aceasta categorie.</p>
+        </div>
+      )}
     </section>
   );
 };
