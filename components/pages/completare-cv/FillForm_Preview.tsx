@@ -789,13 +789,13 @@ const FillForm_Preview = () => {
                 <div>
                   <input
                     type="month"
-                    value={educationState.start}
-                    onChange={(e) => setEducationState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
+                    value={volunteeringState.start}
+                    onChange={(e) => setVolunteeringState((prev) => ({ ...prev, start: e.target.value.toLocaleString() }))}
                   />
                   <input
                     type="month"
-                    value={educationState.end}
-                    onChange={(e) => setEducationState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
+                    value={volunteeringState.end}
+                    onChange={(e) => setVolunteeringState((prev) => ({ ...prev, end: e.target.value.toLocaleString() }))}
                   />
                 </div>
               </label>
