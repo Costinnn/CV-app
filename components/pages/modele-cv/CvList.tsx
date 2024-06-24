@@ -14,7 +14,7 @@ import { CvTemplateType } from "@/types/globalTypes";
 import "./CvList.css";
 
 const CV_TYPES = [
-  { type: "Simplu", query: "simple" },
+  { type: "Simplu", query: "simplu" },
   { type: "Modern", query: "modern" },
   { type: "Creativ", query: "creativ" },
   { type: "Profesional", query: "profesional" },

@@ -9,7 +9,7 @@ export type SvgType = {
 export type CvTemplateType = {
   img: StaticImageData;
   templateName: string;
-  type: string;
+  type: "simplu" | "modern" | "creativ" | "profesional";
 };
 // END DATA
 
