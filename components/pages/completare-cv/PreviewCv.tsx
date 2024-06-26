@@ -40,6 +40,13 @@ const dummyData = {
       end: "2016.07",
       untilNow: false,
     },
+    {
+      school: "Liceul de Informatică din București",
+      specialization: "Mate-Info",
+      start: "2009.09",
+      end: "2012.07",
+      untilNow: false,
+    },
   ],
   experience: [
     {
@@ -76,7 +83,7 @@ const dummyData = {
     {
       role: "Mentor pentru Tineret",
       organisation: "Asociația Tech4Youth",
-      start: "",
+      start: "2020.05",
       end: "",
       untilNow: true,
     },
@@ -128,7 +135,7 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
       pdfTemplate = SimplePdf({ inputData: dummyData });
       break;
     case "compact":
-      pdfTemplate = CompactPdf({ inputData });
+      pdfTemplate = CompactPdf({ inputData: dummyData });
       break;
   }
 
@@ -168,7 +175,7 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
           <div className="cv-template-preview">
             <div className="pdf-display">
               {selectedTemplate === "simple" && <Simple inputData={dummyData} />}
-              {selectedTemplate === "compact" && <Compact inputData={inputData} />}
+              {selectedTemplate === "compact" && <Compact inputData={dummyData} />}
             </div>
 
             <div className="pdf-actions">
