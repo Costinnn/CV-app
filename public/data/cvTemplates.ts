@@ -1,10 +1,12 @@
 import simpleImg from "@/public/images/templates/simple.jpg";
 import compactImg from "@/public/images/templates/compact.jpg";
+import vividVisionImg from "@/public/images/templates/vivid-vision.jpg";
 import { CvTemplateType } from "@/types/globalTypes";
 
 export const CV_TEMPLATES: CvTemplateType[] = [
   { img: simpleImg, templateName: "simple", type: "simplu" },
   { img: compactImg, templateName: "compact", type: "simplu" },
+  { img: vividVisionImg, templateName: "vivid-vision", type: "creativ" },
 ];
 
 // ADDING NEW TEMPLATE
