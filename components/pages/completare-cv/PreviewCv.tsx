@@ -24,6 +24,8 @@ import SimplePdf from "@/components/cv-templates/simple/SimplePdf";
 import CompactPdf from "@/components/cv-templates/compact/CompactPdf";
 
 import "./PreviewCv.css";
+import VividVision from "@/components/cv-templates/vivid-vision/VividVision";
+import VividVisionPdf from "@/components/cv-templates/vivid-vision/VividVisionPdf";
 
 const dummyData = {
   generalInfo: {
@@ -72,12 +74,50 @@ const dummyData = {
       end: "2019.07",
       untilNow: false,
     },
+    {
+      position: "Programator Junior2",
+      company: "WebDev Inc2",
+      description: [
+        "Participarea la proiecte de dezvoltare web, lucrând cu HTML, CSS și JavaScript.",
+        "Asistență în implementarea backend-ului utilizând PHP și MySQL.",
+      ],
+      start: "2016.05",
+      end: "2020.07",
+      untilNow: false,
+    },
+    {
+      position: "Programator Junior3",
+      company: "WebDev Inc3",
+      description: [
+        "Participarea la proiecte de dezvoltare web, lucrând cu HTML, CSS și JavaScript.",
+        "Asistență în implementarea backend-ului utilizând PHP și MySQL.",
+      ],
+      start: "2016.05",
+      end: "2020.07",
+      untilNow: false,
+    },
+    {
+      position: "Programator Junior4",
+      company: "WebDev Inc4",
+      description: [
+        "Participarea la proiecte de dezvoltare web, lucrând cu HTML, CSS și JavaScript.",
+        "Asistență în implementarea backend-ului utilizând PHP și MySQL.",
+      ],
+      start: "2016.05",
+      end: "2020.07",
+      untilNow: false,
+    },
   ],
-  competences: ["Networking Specialist", "JasaScript", "Python", "NodeJs", "Express", "Atlas", "AWS"],
+  competences: ["Networking Specialist", "JavaScript", "Python", "NodeJs", "Express", "Atlas", "AWS"],
   projects: [
     { title: "Website personal", link: "www.cv-gratis.ro" },
     { title: "E-commerce store", link: "www.cv-gratis.ro" },
     { title: "Weather App", link: "www.cv-gratis.ro" },
+    { title: "Cloud", link: "www.cv-gratis.ro" },
+    { title: "TicToe", link: "" },
+    { title: "Game", link: "https://www.google.co.uk/" },
+    { title: "TicToe2", link: "" },
+    { title: "TicToe3", link: "" },
   ],
   volunteering: [
     {
@@ -96,8 +136,9 @@ const dummyData = {
     },
   ],
   links: [
-    { title: "My website", link: "" },
-    { title: "LinkedIn Profile", link: "" },
+    { title: "My website", link: "website.com" },
+    { title: "LinkedIn Profile", link: "https://www.linkedin.com/" },
+    { title: "facebook", link: "https://www.facebook.com/facebook/" },
   ],
   hobbies: ["Fotbal", "Alergare", "Tenis"],
   personalized: [
@@ -136,6 +177,9 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
       break;
     case "compact":
       pdfTemplate = CompactPdf({ inputData: dummyData });
+      break;
+    case "vivid-vision":
+      pdfTemplate = VividVisionPdf({ inputData: dummyData });
       break;
   }
 
@@ -176,6 +220,7 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
             <div className="pdf-display">
               {selectedTemplate === "simple" && <Simple inputData={dummyData} />}
               {selectedTemplate === "compact" && <Compact inputData={dummyData} />}
+              {selectedTemplate === "vivid-vision" && <VividVision inputData={dummyData} />}
             </div>
 
             <div className="pdf-actions">
