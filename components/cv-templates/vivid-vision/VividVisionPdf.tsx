@@ -8,6 +8,8 @@ import {
   VolunteeringStateType,
 } from "@/types/globalTypes";
 
+const colors = ["#ffc914", "#17bebb", "#76b041", "#f26419 ", "#bbcde5", "#b47aea", "#53a548", "#b1b6a6", "#e4572e", "#4a1942"];
+
 const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
   // Destructuring data
   const { generalInfo, contact, education, experience, competences, projects, volunteering, links, hobbies, personalized } = inputData;
@@ -176,11 +178,68 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
 
   const formatDynamicExperienceData = (data: ExperienceStateType[]) => {
     if (data.length > 0) {
+      const formattedDescData: any[] = [];
+      let rowDescData: any[] = [];
       const formattedData: any[] = [];
       let rowData: any[] = [];
 
       for (const [idx, item] of data.entries()) {
-        // first element
+        // DESCRIPTION PART
+        if (item.description.length > 0) {
+          const descData: any[] = [];
+
+          for (const descItem of item.description) {
+            descData.push({ text: descItem, fontSize: 9, margin: [5, 5, 0, 0], color: "#969799" });
+          }
+
+          rowDescData.push({
+            columns: [
+              {
+                canvas: [
+                  {
+                    type: "rect",
+                    x: 0,
+                    y: 0,
+                    w: 4,
+                    h: 37,
+                    color: colors[idx <= 10 ? idx : idx - 10],
+                  },
+                ],
+                margin: [0, 10, 0, 0],
+                width: 10,
+              },
+              {
+                stack: [
+                  // { text: item.position, bold: true, fontSize: 13 },
+                  // { text: item.company, fontSize: 10, italics: true, color: "#969799" },
+                  ...descData,
+                ],
+                margin: [0, 5, 0, 5],
+                width: "auto",
+              },
+            ],
+          });
+
+          // CHECK if it needs to create a new row
+          if (rowDescData.length === 2) {
+            formattedDescData.push({ columns: [...rowDescData], margin: [0, 15, 0, 0] });
+            rowDescData = [];
+          }
+
+          //if data is at the end, add 1 dummy element to rowData to complete it (if needed it)
+          if (idx + 1 === data.length && rowDescData.length === 1) {
+            rowDescData.push({});
+            formattedDescData.push({ columns: [...rowDescData] });
+          }
+        }
+
+        // DESIGN PART
+        // calculate duration
+        const time = (item.end ? new Date(item.end).valueOf() : Date.now().valueOf()) - new Date(item.start).valueOf();
+        const duration = new Date(time);
+        const years = duration.getFullYear() - 1970;
+        const months = duration.getMonth();
+
         if (idx === 0) {
           rowData.push({
             stack: [
@@ -215,7 +274,7 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                 canvas: [
                   {
                     type: "polyline",
-                    color: "orange",
+                    color: colors[idx <= 10 ? idx : idx - 10],
                     closePath: true,
                     points: [
                       { x: 20, y: 0 },
@@ -227,7 +286,16 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                 ],
               },
               {
-                columns: [{ text: "2 years", alignment: "center", width: 114, noWrap: true, fontSize: 8, color: "white" }],
+                columns: [
+                  {
+                    text: [years > 0 ? `${years} ani ` : "", months > 0 ? ` ${months} luni` : ""],
+                    alignment: "center",
+                    width: 114,
+                    noWrap: true,
+                    fontSize: 8,
+                    color: "white",
+                  },
+                ],
                 relativePosition: { y: -12 },
               },
               // ROw 3
@@ -239,8 +307,8 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                     closePath: true,
                     points: [
                       { x: 0, y: 0 },
-                      { x: 10, y: 20 },
-                      { x: 117, y: 20 },
+                      { x: 10, y: 15 },
+                      { x: 117, y: 15 },
                       { x: 117, y: 0 },
                     ],
                   },
@@ -254,10 +322,10 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                     noWrap: true,
                     fontSize: 8,
                     color: "white",
-                    margin: [10, 0, 0, 0],
+                    margin: [15, 0, 0, 0],
                   },
                 ],
-                relativePosition: { y: -15 },
+                relativePosition: { y: -12 },
               },
             ],
 
@@ -299,7 +367,7 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                 canvas: [
                   {
                     type: "polyline",
-                    color: "orange",
+                    color: colors[idx <= 10 ? idx : idx - 10],
                     closePath: true,
                     points: [
                       { x: 11, y: 0 },
@@ -311,7 +379,16 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                 ],
               },
               {
-                columns: [{ text: "2 years", alignment: "center", width: 114, noWrap: true, fontSize: 8, color: "white" }],
+                columns: [
+                  {
+                    text: [years > 0 ? `${years} ani ` : "", months > 0 ? ` ${months} luni` : ""],
+                    alignment: "center",
+                    width: 114,
+                    noWrap: true,
+                    fontSize: 8,
+                    color: "white",
+                  },
+                ],
                 relativePosition: { y: -12 },
               },
               // ROw 3
@@ -323,8 +400,8 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                     closePath: true,
                     points: [
                       { x: 0, y: 0 },
-                      { x: 0, y: 20 },
-                      { x: 110, y: 20 },
+                      { x: 0, y: 15 },
+                      { x: 110, y: 15 },
                       { x: 120, y: 0 },
                     ],
                   },
@@ -341,7 +418,7 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                     margin: [10, 0, 0, 0],
                   },
                 ],
-                relativePosition: { y: -15 },
+                relativePosition: { y: -12 },
               },
             ],
 
@@ -383,7 +460,7 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                 canvas: [
                   {
                     type: "polyline",
-                    color: "orange",
+                    color: colors[idx <= 10 ? idx : idx - 10],
                     closePath: true,
                     points: [
                       { x: 11, y: 0 },
@@ -395,7 +472,16 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                 ],
               },
               {
-                columns: [{ text: "2 years", alignment: "center", width: 114, noWrap: true, fontSize: 8, color: "white" }],
+                columns: [
+                  {
+                    text: [years > 0 ? `${years} ani ` : "", months > 0 ? ` ${months} luni` : ""],
+                    alignment: "center",
+                    width: 114,
+                    noWrap: true,
+                    fontSize: 8,
+                    color: "white",
+                  },
+                ],
                 relativePosition: { y: -12 },
               },
               // ROw 3
@@ -407,8 +493,8 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                     closePath: true,
                     points: [
                       { x: 0, y: 0 },
-                      { x: 0, y: 20 },
-                      { x: 117, y: 20 },
+                      { x: 0, y: 15 },
+                      { x: 117, y: 15 },
                       { x: 117, y: 0 },
                     ],
                   },
@@ -425,7 +511,7 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
                     margin: [10, 0, 0, 0],
                   },
                 ],
-                relativePosition: { y: -15 },
+                relativePosition: { y: -12 },
               },
             ],
 
@@ -456,9 +542,9 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
         }
       }
 
-      return formattedData;
+      return { formattedData, formattedDescData };
     }
-    return [];
+    return { formattedData: [], formattedDescData: [] };
   };
 
   const formatDynamicCompetencesData = (data: string[]) => {
@@ -733,6 +819,81 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
     return [];
   };
 
+  const formatDynamicStringsData = (data: string[]) => {
+    if (data.length > 0) {
+      const formattedData: any[] = [];
+
+      for (const item of data) {
+        formattedData.push({ text: `${item}, `, color: "#969799", fontSize: 11 });
+      }
+      return formattedData;
+    }
+    return [];
+  };
+
+  const formatDynamicPersonalizedData = (data: PersonalizedStateType[]) => {
+    if (data.length > 0) {
+      const formattedData: any[] = [];
+
+      for (const pItem of data) {
+        const content = [];
+        const subheader = { text: pItem.sectionTitle, style: "secondHeader2" };
+
+        for (const [idx, pContentItem] of pItem.content.entries()) {
+          // create description subcategory
+          const descFormattedData: any = [];
+
+          if (pContentItem.description.length > 0) {
+            for (const descItem of pContentItem.description) {
+              descFormattedData.push({ text: `${descItem}`, color: "#969799", fontSize: 11 });
+            }
+          }
+          // end
+
+          content.push({
+            columns: [
+              {
+                canvas: [
+                  {
+                    type: "rect",
+                    x: 0,
+                    y: 0,
+                    w: 4,
+                    h: 37,
+                    color: colors[idx <= 10 ? idx : idx - 10],
+                  },
+                ],
+                width: 10,
+              },
+              {
+                stack: [
+                  {
+                    text: [
+                      { text: `${pContentItem.title}, `, bold: true },
+                      {
+                        text: `${pContentItem.start.replace("-", ".")} ${pContentItem.start || pContentItem.end ? " - " : ""} `,
+                        color: "#969799",
+                        fontSize: 11,
+                      },
+                      { text: `${pContentItem.untilNow ? "Prezent" : pContentItem.end.replace("-", ".")}`, color: "#969799", fontSize: 11 },
+                    ],
+                  },
+                  { ul: [...descFormattedData], markerColor: colors[idx <= 10 ? idx : idx - 10], margin: [30, 0, 0, 0] },
+                ],
+              },
+            ],
+            margin: [15, 10, 0, 0],
+          });
+        }
+
+        formattedData.push(subheader, content);
+      }
+
+      return formattedData;
+    }
+    return [];
+  };
+
   // CREATE VARIABLES TO DISPLAY
   const linksDisplay = formatDynamicLinksData(links);
   const experienceDisplay = formatDynamicExperienceData(experience);
@@ -740,6 +901,8 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
   const projectsDisplay = formatDynamicProjectsData(projects);
   const educationDisply = formatDynamicEducationData(education);
   const volunteeringDisplay = formatDynamicVolunteeringData(volunteering);
+  const hobbiesDisplay = formatDynamicStringsData(hobbies);
+  const personalizedDisplay = formatDynamicPersonalizedData(personalized);
 
   // END display variables
 
@@ -777,7 +940,8 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
       },
 
       // SECTION 3 - EXPERIENCE
-      ...experienceDisplay,
+      ...experienceDisplay.formattedData,
+      ...experienceDisplay.formattedDescData,
 
       // SECTION 4 - COMPETENCES - PROJECTS
       {
@@ -798,21 +962,35 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
             margin: [20, 0, 0, 0],
           },
         ],
+        margin: [0, 20, 0, 0],
       },
 
-      // SECTION 5- EDUCATION - VOLUNTEERING
+      // SECTION 5 - EDUCATION - VOLUNTEERING
       {
         columns: [
           { stack: [...educationDisply], width: "auto" },
           { stack: [...volunteeringDisplay], width: "auto" },
         ],
+        margin: [0, 20, 0, 0],
       },
+
+      // SECTION 6 - HOBBIES
+      {
+        stack: [
+          { text: hobbiesDisplay.length > 0 ? "Hobbi-uri" : "", style: hobbiesDisplay.length > 0 ? "secondHeader2" : "" },
+          { text: [...hobbiesDisplay], margin: [0, 5, 0, 0] },
+        ],
+      },
+
+      // SECTION 7 - PERSONALIZED
+      ...personalizedDisplay,
     ],
 
     // STYLING
     styles: {
       mainHeader: { fontSize: 26, bold: true, margin: [0, 0, 0, 15] },
-      secondHeader: { fontSize: 16, bold: true, margin: [0, 10, 0, 0], alignment: "center" },
+      secondHeader: { fontSize: 16, bold: true, margin: [0, 20, 0, 0], alignment: "center" },
+      secondHeader2: { fontSize: 16, bold: true, margin: [0, 20, 0, 0] },
     },
   };
 
