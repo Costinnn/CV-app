@@ -8,7 +8,7 @@ import {
   VolunteeringStateType,
 } from "@/types/globalTypes";
 
-const colors = ["#ffc914", "#17bebb", "#76b041", "#f26419 ", "#bbcde5", "#b47aea", "#53a548", "#b1b6a6", "#e4572e", "#4a1942"];
+export const colors = ["#ffc914", "#17bebb", "#76b041", "#f26419 ", "#bbcde5", "#b47aea", "#53a548", "#b1b6a6", "#e4572e", "#4a1942"];
 
 const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
   // Destructuring data
