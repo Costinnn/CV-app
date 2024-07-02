@@ -24,24 +24,24 @@ const VividVision = ({ inputData }: PreviewCvPropType) => {
   const experienceDuration: string[] = [];
 
   // calculate duration for each experience element
-  if (experience.length > 0) {
-    for (const item of experience) {
-      const time = (item.end ? new Date(item.end).valueOf() : Date.now().valueOf()) - new Date(item.start).valueOf();
-      const duration = new Date(time);
-      const years = duration.getFullYear() - 1970;
-      const months = duration.getMonth();
+  // if (experience.length > 0) {
+  //   for (const item of experience) {
+  //     const time = (item.end ? new Date(item.end).valueOf() : Date.now().valueOf()) - new Date(item.start).valueOf();
+  //     const duration = new Date(time);
+  //     const years = duration.getFullYear() - 1970;
+  //     const months = duration.getMonth();
 
-      if (years > 0 && months > 0) {
-        experienceDuration.push(`${years} ani ${months} luni`);
-      } else if (years > 0 && months === 0) {
-        experienceDuration.push(`${years} ani`);
-      } else if (years === 0 && months > 0) {
-        experienceDuration.push(`${months} luni`);
-      } else {
-        experienceDuration.push("");
-      }
-    }
-  }
+  //     if (years > 0 && months > 0) {
+  //       experienceDuration.push(`${years} ani ${months} luni`);
+  //     } else if (years > 0 && months === 0) {
+  //       experienceDuration.push(`${years} ani`);
+  //     } else if (years === 0 && months > 0) {
+  //       experienceDuration.push(`${months} luni`);
+  //     } else {
+  //       experienceDuration.push("");
+  //     }
+  //   }
+  // }
 
   return (
     <div className="model-vividvision">
@@ -120,7 +120,7 @@ const VividVision = ({ inputData }: PreviewCvPropType) => {
                 </div>
                 <div>
                   <div className="row2" id={`color${idx <= 9 ? idx : idx - 9}`}>
-                    {experienceDuration[idx].length > 0 && experienceDuration[idx]}
+                    {/* {experienceDuration[idx].length > 0 && experienceDuration[idx]} */}2 ani 2 luni
                   </div>
 
                   <div className={`row3 ${idx === 0 ? "first-shape" : idx === experience.length - 1 ? "last-shape" : "middle-shape"}`}>
