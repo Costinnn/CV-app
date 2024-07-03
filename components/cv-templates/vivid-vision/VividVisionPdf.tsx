@@ -290,8 +290,7 @@ const VividVisionPdf = ({ inputData }: PreviewCvPropType) => {
               {
                 columns: [
                   {
-                    // text: [years > 0 ? `${years} ani ` : "", months > 0 ? ` ${months} luni` : ""],
-                    text: "2 ani 2 luni",
+                    text: [years > 0 ? `${years} ani ` : "", months > 0 ? ` ${months} luni` : ""],
                     alignment: "center",
                     width: 114,
                     noWrap: true,

@@ -125,7 +125,7 @@ const VividVision = ({ inputData }: PreviewCvPropType) => {
                 </div>
                 <div>
                   <div className="row2" id={`color${idx <= 9 ? idx : idx - 9}`}>
-                    {experienceDuration[idx]}X
+                    {experienceDuration[idx]}
                   </div>
 
                   <div className={`row3 ${idx === 0 ? "first-shape" : idx === experience.length - 1 ? "last-shape" : "middle-shape"}`}>
