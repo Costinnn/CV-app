@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import AddSvg from "@/public/SVG/AddSvg";
@@ -26,6 +26,7 @@ import "./FillForm_Preview.css";
 
 const FillForm_Preview = () => {
   const router = useRouter();
+  const isMounted = useRef(false);
 
   // LOGIC STATE
   const [otherCategories, setOtherCategories] = useState<OtherCategoriesFormType>({
@@ -421,6 +422,252 @@ const FillForm_Preview = () => {
     }
   };
   //#endregion
+
+  // #region session STORAGE
+  // generalInfo
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("generalInfo", JSON.stringify(generalInfo));
+    }
+  }, [generalInfo]);
+
+  // contact
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("contact", JSON.stringify(contact));
+    }
+  }, [contact]);
+
+  // education
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("education", JSON.stringify(education));
+    }
+  }, [education]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("educationState", JSON.stringify(educationState));
+    }
+  }, [educationState]);
+
+  // experience
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("experience", JSON.stringify(experience));
+    }
+  }, [experience]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("experienceState", JSON.stringify(experienceState));
+    }
+  }, [experienceState]);
+
+  // competences
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("competences", JSON.stringify(competences));
+    }
+  }, [competences]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("competencesState", JSON.stringify(competencesState));
+    }
+  }, [competencesState]);
+
+  // projects
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("projects", JSON.stringify(projects));
+    }
+  }, [projects]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("projectsState", JSON.stringify(projectsState));
+    }
+  }, [projectsState]);
+
+  // volunteering
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("volunteering", JSON.stringify(volunteering));
+    }
+  }, [volunteering]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("volunteeringState", JSON.stringify(volunteeringState));
+    }
+  }, [volunteeringState]);
+
+  // links
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("links", JSON.stringify(links));
+    }
+  }, [links]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("linksState", JSON.stringify(linksState));
+    }
+  }, [linksState]);
+
+  // hobbies
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("hobbies", JSON.stringify(hobbies));
+    }
+  }, [hobbies]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("hobbiesState", JSON.stringify(hobbiesState));
+    }
+  }, [hobbiesState]);
+
+  // personalized
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("personalized", JSON.stringify(personalized));
+    }
+  }, [personalized]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("personalizedState", JSON.stringify(personalizedState));
+    }
+  }, [personalizedState]);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      sessionStorage.setItem("personalizedContent", JSON.stringify(personalizedContentState));
+    }
+  }, [personalizedContentState]);
+
+  // #endregion
+
+  // UPDATE state on mount
+  useEffect(() => {
+    isMounted.current = true;
+    const generalInfoSS = sessionStorage.getItem("generalInfo");
+    const contactSS = sessionStorage.getItem("contact");
+    const educationSS = sessionStorage.getItem("education");
+    const educationStateSS = sessionStorage.getItem("educationState");
+    const experienceSS = sessionStorage.getItem("experience");
+    const experienceStateSS = sessionStorage.getItem("experienceState");
+    const competencesSS = sessionStorage.getItem("competences");
+    const competencesStateSS = sessionStorage.getItem("competencesState");
+    const projectsSS = sessionStorage.getItem("projects");
+    const projectsStateSS = sessionStorage.getItem("projectsState");
+    const volunteeringSS = sessionStorage.getItem("volunteering");
+    const volunteeringStateSS = sessionStorage.getItem("volunteeringState");
+    const linksSS = sessionStorage.getItem("links");
+    const linksStateSS = sessionStorage.getItem("linksState");
+    const hobbiesSS = sessionStorage.getItem("hobbies");
+    const hobbiesStateSS = sessionStorage.getItem("hobbiesState");
+    const personalizedSS = sessionStorage.getItem("personalized");
+    const personalizedStateSS = sessionStorage.getItem("personalizedState");
+    const personalizedContentSS = sessionStorage.getItem("personalizedContent");
+
+    if (generalInfoSS) {
+      const generalInfoSSData = JSON.parse(generalInfoSS);
+      setGeneralInfo(generalInfoSSData);
+    }
+
+    if (contactSS) {
+      const contactSSData = JSON.parse(contactSS);
+      setContact(contactSSData);
+    }
+
+    if (educationSS) {
+      const educationSSData = JSON.parse(educationSS);
+      setEducation(educationSSData);
+    }
+
+    if (educationStateSS) {
+      const educationStateSSData = JSON.parse(educationStateSS);
+      setEducationState(educationStateSSData);
+    }
+
+    if (experienceSS) {
+      const experienceSSData = JSON.parse(experienceSS);
+      setExperience(experienceSSData);
+    }
+
+    if (experienceStateSS) {
+      const experienceStateSSData = JSON.parse(experienceStateSS);
+      setExperienceState(experienceStateSSData);
+    }
+
+    if (competencesSS) {
+      const competencesSSData = JSON.parse(competencesSS);
+      setCompetences(competencesSSData);
+    }
+
+    if (competencesStateSS) {
+      const competencesStateSSData = JSON.parse(competencesStateSS);
+      setCompetencesState(competencesStateSSData);
+    }
+
+    if (projectsSS) {
+      const projectsSSData = JSON.parse(projectsSS);
+      setProjects(projectsSSData);
+    }
+
+    if (projectsStateSS) {
+      const projectsStateSSData = JSON.parse(projectsStateSS);
+      setProjectsState(projectsStateSSData);
+    }
+
+    if (volunteeringSS) {
+      const volunteeringSSData = JSON.parse(volunteeringSS);
+      setVolunteering(volunteeringSSData);
+    }
+
+    if (volunteeringStateSS) {
+      const volunteeringStateSSData = JSON.parse(volunteeringStateSS);
+      setVolunteeringState(volunteeringStateSSData);
+    }
+
+    if (linksSS) {
+      const linksSSData = JSON.parse(linksSS);
+      setLinks(linksSSData);
+    }
+
+    if (linksStateSS) {
+      const linksStateSSData = JSON.parse(linksStateSS);
+      setLinksState(linksStateSSData);
+    }
+
+    if (hobbiesSS) {
+      const hobbiesSSData = JSON.parse(hobbiesSS);
+      setHobbies(hobbiesSSData);
+    }
+
+    if (hobbiesStateSS) {
+      const hobbiesStateSSData = JSON.parse(hobbiesStateSS);
+      setHobbiesState(hobbiesStateSSData);
+    }
+
+    if (personalizedSS) {
+      const personalizedSSData = JSON.parse(personalizedSS);
+      setPersonalized(personalizedSSData);
+    }
+
+    if (personalizedStateSS) {
+      const personalizedStateSSData = JSON.parse(personalizedStateSS);
+      setPersonalizedState(personalizedStateSSData);
+    }
+
+    if (personalizedContentSS) {
+      const personalizedContentSSData = JSON.parse(personalizedContentSS);
+      setPersonalizedContentState(personalizedContentSSData);
+    }
+  }, []);
 
   return (
     <div className="fillform_preview">
