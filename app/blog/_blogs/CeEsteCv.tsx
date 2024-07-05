@@ -4,18 +4,6 @@ import Link from "next/link";
 
 import ArrowUpRightSvg from "@/public/SVG/ArrowUpRightSvg";
 
-export const metadata = {
-  title: "YYY",
-  description: "YYY",
-  keywords: ["YYY", "YYY"],
-  openGraph: {
-    title: "YYY",
-    description: "YYY",
-    url: "YYY",
-    locale: "ro_RO",
-    type: "website",
-  },
-};
 
 const CeEsteCv = () => {
   return (
