@@ -82,7 +82,6 @@
 
     /* blur */
     .menu-open::before {
-      border: 1px solid red;
       content: "";
       position: absolute;
       z-index: -1;
