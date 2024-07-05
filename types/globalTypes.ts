@@ -5,6 +5,8 @@ export type SvgType = {
   color?: string;
 };
 
+export type BlogPostPropsType = { params: { linkName: string } };
+
 // DATA
 export type CvTemplateType = {
   img: StaticImageData;

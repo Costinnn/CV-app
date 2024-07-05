@@ -8,6 +8,34 @@ import { BLOG_LIST_DATA } from "@/public/data/blogListData";
 
 import "./style.css";
 
+export const metadata = {
+  title: "Bloguri despre CV online",
+  description:
+    "Explorează articole informative despre cum să scrii un CV perfect pe blogul CV-gratis.ro! Află ce trebuie să conțină un CV, cum să-l structurezi și multe alte sfaturi utile pentru a crea un curriculum vitae de succes. Citește acum pentru a-ți îmbunătăți CV-ul!",
+  keywords: [
+    "cum să scrii un CV",
+    "ce trebuie să conțină un CV",
+    "ce este un CV",
+    "sfaturi CV",
+    "articole despre CV",
+    "ghiduri CV",
+    "blog despre CV",
+    "cum să faci un CV",
+    "structura CV",
+    "informații CV",
+    "sfaturi pentru CV profesional",
+    "sfaturi pentru CV modern",
+    "sfaturi pentru CV atractiv",
+    "cum să creezi un CV",
+    "cum să îmbunătățești un CV",
+    "resurse pentru CV",
+    "exemple de CV",
+    "modele de CV",
+    "articole CV",
+    "blog CV-uri",
+  ],
+};
+
 const page = () => {
   return (
     <main className="blogs">
