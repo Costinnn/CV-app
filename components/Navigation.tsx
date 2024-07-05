@@ -7,6 +7,7 @@ import MenuSvg from "@/public/SVG/MenuSvg";
 import CloseSvg from "@/public/SVG/CloseSvg";
 
 import "./style.css";
+import LogoSvg from "@/public/SVG/LogoSvg";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -35,7 +36,10 @@ const Navigation = () => {
 
   return (
     <nav className={`navigation section-wide ${!isScrollingUp && !isMenuOpen ? "" : "show-nav"}`}>
-      <Link href="/">CV-online</Link>
+      <Link href="/" className="logo">
+        <LogoSvg size="30" />
+        CV-online
+      </Link>
 
       <Link href="/completare-cv" className="btn-primary">
         Completeaza CV
