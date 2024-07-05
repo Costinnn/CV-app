@@ -62,7 +62,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`rootlayout ${poppins.variable} `}>
         <Navigation />
-        <h1>test</h1>
         {children}
         <Footer />
       </body>
