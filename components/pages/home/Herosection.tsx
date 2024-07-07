@@ -31,7 +31,7 @@ const Herosection = () => {
         <div>
           <Image src={portretsImg} alt="cv gratis" width={200} height={100} />
           <p>
-            500+ <br />
+            127+ <br />
             <span>CV-uri create</span>
           </p>
         </div>

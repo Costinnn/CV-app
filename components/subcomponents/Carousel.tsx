@@ -38,7 +38,7 @@ const Carousel = () => {
 
   return (
     <div className="carousel">
-      <p>CV-uri folosite la peste 15+ companii de renume</p>
+      <p>CV-uri folosite la peste 6+ companii de renume</p>
 
       <div className="frame">
         <div className="content">
