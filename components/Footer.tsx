@@ -19,10 +19,10 @@ const Footer = () => {
 
         <div>
           <h3>Link-uri</h3>
-
-          <Link href="/modele-cv">Modele CV gratis</Link>
-          <Link href="/completare-cv">Completează CV-ul</Link>
-          <Link href="/blog">Blog</Link>
+          <Link href="/contact">Contact</Link>
+          <Link href="/termeni-si-conditii">Termeni și condiții</Link>
+          <Link href="/politica-de-confidentialitate">Politica de confidențialitate</Link>
+          <Link href="/cookie">Cookie-uri</Link>
         </div>
       </div>
 
