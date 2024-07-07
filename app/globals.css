@@ -100,6 +100,27 @@ button {
   }
 }
 
+.legal-page {
+  padding: 20px;
+  text-align: center;
+
+  h1 {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  .content {
+    h2 {
+      margin-top: 20px;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    padding: 5vw;
+    text-align: left;
+  }
+}
+
 /* spinner */
 .loader {
   width: 48px;

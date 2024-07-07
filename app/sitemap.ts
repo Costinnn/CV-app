@@ -35,5 +35,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     ...blogsSitemap,
+    {
+      url: `${websiteURL}/contact`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
+    {
+      url: `${websiteURL}/cookie`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${websiteURL}/politica-de-confidentialitate`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${websiteURL}/termeni-si-conditii`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
   ];
 }
