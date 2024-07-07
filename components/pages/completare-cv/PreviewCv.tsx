@@ -27,6 +27,7 @@ import "./PreviewCv.css";
 import VividVision from "@/components/cv-templates/vivid-vision/VividVision";
 import VividVisionPdf from "@/components/cv-templates/vivid-vision/VividVisionPdf";
 
+// use dummyData on DEV mode
 const dummyData = {
   generalInfo: {
     name: "Razvan Pop",
@@ -173,13 +174,13 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
 
   switch (selectedTemplate) {
     case "simple":
-      pdfTemplate = SimplePdf({ inputData: dummyData });
+      pdfTemplate = SimplePdf({ inputData });
       break;
     case "compact":
-      pdfTemplate = CompactPdf({ inputData: dummyData });
+      pdfTemplate = CompactPdf({ inputData });
       break;
     case "vivid-vision":
-      pdfTemplate = VividVisionPdf({ inputData: dummyData });
+      pdfTemplate = VividVisionPdf({ inputData });
       break;
   }
 
@@ -218,9 +219,9 @@ const PreviewCv = ({ inputData }: PreviewCvPropType) => {
           //SELECTED HTML TEMPLATE + VIEW PDF version
           <div className="cv-template-preview">
             <div className="pdf-display">
-              {selectedTemplate === "simple" && <Simple inputData={dummyData} />}
-              {selectedTemplate === "compact" && <Compact inputData={dummyData} />}
-              {selectedTemplate === "vivid-vision" && <VividVision inputData={dummyData} />}
+              {selectedTemplate === "simple" && <Simple inputData={inputData} />}
+              {selectedTemplate === "compact" && <Compact inputData={inputData} />}
+              {selectedTemplate === "vivid-vision" && <VividVision inputData={inputData} />}
             </div>
 
             <div className="pdf-actions">

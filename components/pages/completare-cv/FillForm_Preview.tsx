@@ -24,6 +24,8 @@ import {
 
 import "./FillForm_Preview.css";
 
+// in DEV mode, for isMounted useRef to work you have to uncomment the: reactStrictMode: false from next.config.ts
+
 const FillForm_Preview = () => {
   const router = useRouter();
   const isMounted = useRef(false);
