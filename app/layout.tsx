@@ -1,5 +1,7 @@
 import { Poppins } from "next/font/google";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -65,6 +67,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-23CD7JGFLG" />
     </html>
   );
 }
