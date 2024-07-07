@@ -1,0 +1,129 @@
+.contact-page {
+  h1 {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  > div {
+    
+    form {
+      margin-bottom: 50px;
+      padding: 0 20px;
+      margin: 0 auto;
+      max-width: 700px;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        color: var(--gray);
+        font-weight: 600;
+        font-size: 17px;
+        margin-top: 20px;
+
+        input,
+        textarea {
+          background-color: #f5f5f513;
+          border-radius: 5px;
+          padding: 5px 10px;
+          margin-top: 5px;
+          border: 2px solid var(--gray);
+          color: var(--white);
+          font-size: 16px;
+          resize: none;
+        }
+
+        input:focus,
+        textarea:focus {
+          outline: 1px solid var(--gray);
+        }
+
+        .error-input-border {
+          border-color: red !important;
+        }
+      }
+
+      > button {
+        margin: 30px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .loader {
+        margin: 20px auto;
+      }
+    }
+
+    > ul {
+      display: none;
+    }
+
+    @media screen and (min-width: 800px) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 5vw;
+
+      form {
+        width: 100%;
+      }
+
+      > ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h2 {
+          font-size: 4vw;
+          margin-bottom: 30px;
+        }
+
+        li {
+          width: 70%;
+
+          a {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 2vw;
+            gap: 20px;
+
+            span {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: var(--white);
+              color: var(--black);
+              flex-shrink: 0;
+              width: 3vw;
+              height: 3vw;
+              border-radius: 50%;
+            }
+          }
+        }
+
+        li:first-of-type {
+          a {
+            color: var(--primary);
+
+            span {
+              background-color: var(--primary);
+              color: var(--white);
+            }
+          }
+        }
+
+        li:hover {
+          a {
+            color: var(--primary);
+
+            span {
+              background-color: var(--primary);
+              color: var(--white);
+            }
+          }
+        }
+      }
+    }
+  }
+}
