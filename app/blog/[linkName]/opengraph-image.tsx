@@ -26,8 +26,9 @@ export default async function Image({ params: { linkName } }: BlogPostPropsType)
       // ImageResponse JSX element
       <div
         style={{
+          position: "relative",
           fontSize: 50,
-          color: "red",
+          color: "white",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -41,6 +42,7 @@ export default async function Image({ params: { linkName } }: BlogPostPropsType)
           backgroundImage: `url(${websiteURL}/images/blog/cecontine.jpg)`,
         }}
       >
+        <div style={{ position: "absolute", top: "0", left: "0", width: "100%", height: "100%", backgroundColor: "black", opacity: "0.5" }}></div>
         <h1>{blogPost.title}</h1>
       </div>
     )
