@@ -23,30 +23,26 @@ const VividVision = ({ inputData }: PreviewCvPropType) => {
   // Destructuring data
   const { generalInfo, contact, education, experience, competences, projects, volunteering, links, hobbies, personalized } = inputData;
 
-  const [experienceDuration, setExperienceDuration] = useState<string[]>([]);
-
   // calculate duration for each experience element
+  const experienceDuration: string[] = [];
+  if (experience.length > 0) {
+    for (const item of experience) {
+      const time = (item.end ? new Date(item.end).valueOf() : Date.now().valueOf()) - new Date(item.start).valueOf();
+      const duration = new Date(time);
+      const years = duration.getFullYear() - 1970;
+      const months = duration.getMonth();
 
-  useEffect(() => {
-    if (experience.length > 0) {
-      for (const item of experience) {
-        const time = (item.end ? new Date(item.end).valueOf() : Date.now().valueOf()) - new Date(item.start).valueOf();
-        const duration = new Date(time);
-        const years = duration.getFullYear() - 1970;
-        const months = duration.getMonth();
-
-        if (years > 0 && months > 0) {
-          setExperienceDuration((prev) => [...prev, `${years} ani ${months} luni`]);
-        } else if (years > 0 && months === 0) {
-          setExperienceDuration((prev) => [...prev, `${years} ani`]);
-        } else if (years === 0 && months > 0) {
-          setExperienceDuration((prev) => [...prev, `${months} luni`]);
-        } else {
-          setExperienceDuration((prev) => [...prev, ""]);
-        }
+      if (years > 0 && months > 0) {
+        experienceDuration.push(`${years} ani ${months} luni`);
+      } else if (years > 0 && months === 0) {
+        experienceDuration.push(`${years} ani`);
+      } else if (years === 0 && months > 0) {
+        experienceDuration.push(`${months} luni`);
+      } else {
+        experienceDuration.push("");
       }
     }
-  }, []);
+  }
 
   return (
     <div className="model-vividvision">
