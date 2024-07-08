@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CV web application
 
-## Getting Started
+<img src="https://github.com/Costinnn/CV-app/assets/103998434/55fd304a-6b5e-4203-a610-ccc11d70d5ad" width=70%>
 
-First, run the development server:
+## Introduction - project's aim
+The idea came about when I wanted to create a CV to apply for various jobs, but I discovered that many sites promising free CVs actually required payment to download the document. So, I wanted to offer a platform where users can complete and download CVs for free, through a simple and accessible interface.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### React
+React, a powerful library used in the front end of both applications, which helps you structure and organize in an easy-to-understand way, both javascript and jsx code.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Next.js
+Next.js a framework that brings major improvements to applications created with React that gives developers the option to create with server-side rendering and static websites.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### HTML & CSS
+HTML & CSS basic languages for web applications
 
-## Learn More
+### pdfMake
+Create and customize PDF templates
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Functionalities
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Fill form page
+User can fill data and preview the pdf in real time
 
-## Deploy on Vercel
+<img src="https://github.com/Costinnn/CV-app/assets/103998434/a78a7ccc-a84d-4a61-bd56-5a99b17c3b33" width=70%>.
+======
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### CV templates page
+User can choose what CV template suite him the most
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img src="https://github.com/Costinnn/CV-app/assets/103998434/4a9feff6-230e-444f-b385-f4c258b93b64" width=70%>.
+======
+
+#### Blogs page
+User can read and improve his knowledge about CV
+
+<img src="https://github.com/Costinnn/CV-app/assets/103998434/c4b6141f-7d88-4637-aa56-d6701a2a7e92" width=70%>.
+======
+
