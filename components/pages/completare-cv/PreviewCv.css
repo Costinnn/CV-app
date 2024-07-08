@@ -57,6 +57,12 @@
         aspect-ratio: 1/1;
         padding: 10px;
       }
+
+      @media screen and (max-width: 425px) {
+        .btn-primary:first-of-type {
+          display: none;
+        }
+      }
     }
   }
 
