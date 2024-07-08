@@ -38,7 +38,7 @@ const Navigation = () => {
     <nav className={`navigation section-wide ${!isScrollingUp && !isMenuOpen ? "" : "show-nav"}`}>
       <Link href="/" className="logo">
         <LogoSvg size="30" />
-        CV-online
+        CV-gratis
       </Link>
 
       <Link href="/completare-cv" className="btn-primary">
