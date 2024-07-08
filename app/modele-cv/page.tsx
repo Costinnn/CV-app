@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 
 import CvList from "@/components/pages/modele-cv/CvList";
+import Loading from "./loading";
 
 export const metadata = {
   title: "Modele gratis de CV",
@@ -30,7 +31,7 @@ const page = () => {
     <main className="cv-models">
       <h1>Modele CV</h1>
 
-      <Suspense>
+      <Suspense fallback={<Loading />}>
         <CvList />
       </Suspense>
     </main>

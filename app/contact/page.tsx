@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import { useState } from "react";
 
 import SuccessSvg from "@/public/SVG/SuccessSvg";
@@ -10,6 +10,7 @@ import axios from "axios";
 
 import "./style.css";
 import Link from "next/link";
+import Loading from "./loading";
 
 type ErrorStateType = { name: boolean; email: boolean; message: boolean };
 
@@ -94,64 +95,65 @@ const page = () => {
             </Link>
           </li>
         </ul>
+        <Suspense fallback={<Loading />}>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">
+              Nume
+              <input
+                type="text"
+                name="name"
+                id="name"
+                className={errorState.name ? "error-input-border" : ""}
+                required
+                placeholder="Nume"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
 
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">
-            Nume
-            <input
-              type="text"
-              name="name"
-              id="name"
-              className={errorState.name ? "error-input-border" : ""}
-              required
-              placeholder="Nume"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
+            <label htmlFor="email">
+              E-mail
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className={errorState.email ? "error-input-border" : ""}
+                required
+                placeholder="E-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
 
-          <label htmlFor="email">
-            E-mail
-            <input
-              type="email"
-              name="email"
-              id="email"
-              className={errorState.email ? "error-input-border" : ""}
-              required
-              placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
+            <label htmlFor="message">
+              Mesaj
+              <textarea
+                cols={30}
+                rows={5}
+                wrap="hard"
+                name="message"
+                id="message"
+                className={errorState.message ? "error-input-border" : ""}
+                required
+                placeholder="Adaugă un mesaj..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+            </label>
 
-          <label htmlFor="message">
-            Mesaj
-            <textarea
-              cols={30}
-              rows={5}
-              wrap="hard"
-              name="message"
-              id="message"
-              className={errorState.message ? "error-input-border" : ""}
-              required
-              placeholder="Adaugă un mesaj..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-          </label>
-
-          {btnState === "loading" ? (
-            <span className="loader"></span>
-          ) : (
-            <button
-              className={`btn-primary2`}
-              disabled={btnState === "loading" || btnState === "error" || btnState === "success"}
-              onClick={(e) => handleSubmit(e)}
-            >
-              {!btnState ? "Trimite mesaj" : btnState === "success" ? <SuccessSvg /> : <ErrorSvg />}
-            </button>
-          )}
-        </form>
+            {btnState === "loading" ? (
+              <span className="loader"></span>
+            ) : (
+              <button
+                className={`btn-primary2`}
+                disabled={btnState === "loading" || btnState === "error" || btnState === "success"}
+                onClick={(e) => handleSubmit(e)}
+              >
+                {!btnState ? "Trimite mesaj" : btnState === "success" ? <SuccessSvg /> : <ErrorSvg />}
+              </button>
+            )}
+          </form>
+        </Suspense>
       </div>
     </main>
   );

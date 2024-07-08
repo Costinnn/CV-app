@@ -4,6 +4,7 @@ import BottomWave2 from "@/public/SVG/BottomWave2";
 import FillForm_Preview from "@/components/pages/completare-cv/FillForm_Preview";
 
 import "./style.css";
+import Loading from "./loading";
 
 export const metadata = {
   title: "Completeaza CV online gratis",
@@ -48,7 +49,7 @@ const page = () => {
       <h1>Completeaza CV online</h1>
       <BottomWave2 />
 
-      <Suspense>
+      <Suspense fallback={<Loading />}>
         <FillForm_Preview />
       </Suspense>
     </main>
